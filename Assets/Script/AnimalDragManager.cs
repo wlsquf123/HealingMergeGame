@@ -1,38 +1,35 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class AnimalDragManager : MonoBehaviour
 {
-    private Transform animal; // 동물 위치
-    public TerrainCollider terrain; // 동물이 움직일 투명한 수평 바닥
-    private Vector3 offset; // 동물이 마우스 위치로 갑자기 튀지 않게 하는 거리 차이
+    public bool Merged = false;
+    public Animal animal;
 
-    private void Update()
+    private void OnMouseDrag()
     {
-        Mouse mouse = Mouse.current;
-        Ray ray = Camera.main.ScreenPointToRay(mouse.position.ReadValue()); 
+        Vector3 mousPos = Input.mousePosition;
+        mousPos.z = Camera.main.transform.position.y;
 
-        // 동물 잡기
-        if (mouse.leftButton.wasPressedThisFrame && Physics.Raycast(ray, out RaycastHit hit) && hit.transform.CompareTag("Animal"))
-        {
-            animal = hit.transform;
-
-            if (terrain.Raycast(ray, out RaycastHit groundHit, Mathf.Infinity))
-            {
-                offset = animal.position - groundHit.point;
-            }
-        }
-
-        // Terrain 위로 동물 이동
-        if (animal != null && mouse.leftButton.isPressed && terrain.Raycast(ray, out RaycastHit moveHit, Mathf.Infinity))
-        {
-            animal.position = moveHit.point + offset;
-        }
-
-        // 동물 놓기
-        if (mouse.leftButton.wasReleasedThisFrame)
-        {
-            animal = null;
-        }
+        transform.position = Camera.main.ScreenToWorldPoint(mousPos);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Animal")) return;
+
+        var otherMerged = other.GetComponent<AnimalDragManager>(); // 닿은 오브젝트의 스크립트를 otherMerged 변수에 저장
+
+        if (otherMerged.Merged == true) return; // Merged가 참이면 돌아가라
+
+        Merged = true; // 내 오브젝트는 합성된 상태
+        Destroy(other.gameObject);
+        Destroy(gameObject);
+
+        GameManager.instance.UImanager.OpenAnimallists(animal.Rating, transform.position);
+    }
+
+
 }
