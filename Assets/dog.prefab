@@ -196,7 +196,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3580137116322980271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04320b027b4202f448131c89a1dc9f6c, type: 3}
   m_Name: 
@@ -218,8 +218,12 @@ MonoBehaviour:
   animalName: "\uAC1C"
   ex: 0
   Lv: 0
-  food: 0
-  water: 0
-  hp: 0
-  speed: 0
+  food: 50
+  water: 50
+  hp: 100
+  speed: 1
   Rating: 1
+  idleTimer: 60
+  foodTimer: 0
+  waterAndHpTimer: 0
+  StateType: 2
