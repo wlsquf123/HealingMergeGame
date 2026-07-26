@@ -7,7 +7,11 @@ public class GameManager : MonoBehaviour
     public FSMObjectManager FSMObjectManager;
 
     public float DayTIme = 228f; // 시간
-    public int Daycount; // 
+    public int Daycount; // 288초당 1 증가 
+
+
+    // 포인트 추가할것.
+    // 점수 표시
 
     private void Awake()
     {
@@ -22,11 +26,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         DayTIme -= Time.deltaTime;
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour
 
         if (DayTIme <= 0)
         {
-            DayTIme = 228f;
+            DayTIme = 288f;
             Daycount++;
         }
     }

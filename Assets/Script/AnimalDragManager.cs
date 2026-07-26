@@ -8,14 +8,6 @@ public class AnimalDragManager : MonoBehaviour
     public bool Merged = false;
     public Animal animal;
 
-    private void OnMouseDrag()
-    {
-        Vector3 mousPos = Input.mousePosition;
-        mousPos.z = Camera.main.transform.position.y;
-
-        transform.position = Camera.main.ScreenToWorldPoint(mousPos);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Animal")) return;

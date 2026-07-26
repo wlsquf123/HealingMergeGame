@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class foodEnter : MonoBehaviour
+public class FoodEnter : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
