@@ -11,5 +11,12 @@ AssetOrigin:
   productId: 18353
   packageName: Fantasy Skybox FREE
   packageVersion: 1.6.5
-  assetPath: Assets/Fantasy Skybox FREE/Readme.txt
+  assetPath: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0P\0\0\0\x01\0\0"
+  uploadId: 699843
+AssetOrigin:
+  serializedVersion: 1
+  productId: 18353
+  packageName: Fantasy Skybox FREE
+  packageVersion: 1.6.5
+  assetPath: "Assets/\uADF8\uB798\uD53D/Sky/Readme.txt"
   uploadId: 699843

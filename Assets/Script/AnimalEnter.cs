@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnimalDragManager : MonoBehaviour
+public class AnimalEnter : MonoBehaviour
 {
     public bool Merged = false;
     public Animal animal;
@@ -12,7 +12,7 @@ public class AnimalDragManager : MonoBehaviour
     {
         if (!other.CompareTag("Animal")) return;
 
-        var otherMerged = other.GetComponent<AnimalDragManager>(); // 닿은 오브젝트의 스크립트를 otherMerged 변수에 저장
+        var otherMerged = other.GetComponent<AnimalEnter>(); // 닿은 오브젝트의 스크립트를 otherMerged 변수에 저장
 
         if (otherMerged.Merged == true) return; // Merged가 참이면 돌아가라
 

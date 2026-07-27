@@ -2247,6 +2247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a914c95b067b7047abde9f217081336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Drag
+  targetY: 10
 --- !u!114 &5780283908883684870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2286,7 +2287,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2315,9 +2316,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &7796714398378687091
 Animator:

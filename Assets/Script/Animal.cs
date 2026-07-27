@@ -78,7 +78,7 @@ public class Animal : MonoBehaviour
     {
         var foodOBJ = GameManager.instance.FSMObjectManager.FoodBowl;
 
-        if (foodOBJ == null) // 리스트에서 foodOBJ가 없으면? 돌아가라
+        if (foodOBJ == null || foodOBJ.Count == 0) // 리스트에서 foodOBJ가 없으면? 돌아가라
         {
             Change(Animalstate.idle);
             return;
@@ -105,7 +105,7 @@ public class Animal : MonoBehaviour
     public void DrnkState() // 마시기
     {
         var waterOBJ = GameManager.instance.FSMObjectManager.WaterBowl;
-        if (waterOBJ == null)
+        if (waterOBJ == null || waterOBJ.Count == 0)
         {
             Change(Animalstate.idle);
             return;
@@ -131,7 +131,7 @@ public class Animal : MonoBehaviour
     public void RestState() // 쉬기
     {
         var TreeOBJ = GameManager.instance.FSMObjectManager.TreeShades;
-        if (TreeOBJ == null)
+        if (TreeOBJ == null || TreeOBJ.Count == 0)
         {
             Change(Animalstate.idle);
             return;
@@ -188,12 +188,6 @@ public class Animal : MonoBehaviour
             waterAndHpTimer = 0;
         }
 
-        // 상태 판단
-        if (food <= 0 || water <= 0 || hp <= 0)
-        {
-            Change(Animalstate.None); // 0되면 멈춰라 행동불능
-            return;
-        }
         if (StateType == Animalstate.Eat || StateType == Animalstate.Drink || StateType == Animalstate.Rest) return;
         if (food <= 30f)
         {

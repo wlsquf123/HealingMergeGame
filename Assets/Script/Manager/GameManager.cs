@@ -8,10 +8,8 @@ public class GameManager : MonoBehaviour
 
     public float DayTIme = 228f; // 시간
     public int Daycount; // 288초당 1 증가 
-
-
-    // 포인트 추가할것.
-    // 점수 표시
+    public float point = 100f; // 포인트
+    public float score; // 점수
 
     private void Awake()
     {
