@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum Animalstate
@@ -167,6 +166,7 @@ public class Animal : MonoBehaviour
                 moveDirection.x = Random.Range(-5f, 5f);
                 moveDirection.z = Random.Range(-5f, 5f);
                 idleTimer = 2f;
+                AddExp(1f);
                 break;
         }
     }
@@ -188,10 +188,12 @@ public class Animal : MonoBehaviour
             waterAndHpTimer = 0;
         }
 
+        // 먹기, 마시기, 휴식 상태
         if (StateType == Animalstate.Eat || StateType == Animalstate.Drink || StateType == Animalstate.Rest) return;
+
         if (food <= 30f)
         {
-            Change(Animalstate.Eat);    
+            Change(Animalstate.Eat);
         }
 
         if (water <= 30f)
@@ -205,15 +207,8 @@ public class Animal : MonoBehaviour
         }
     }
 
-    public void Foods()
+    public void AddExp(float add)
     {
-        food = 100f;
-        Change(Animalstate.idle);
-    }
-
-    public void Waters()
-    {
-        water = 100f;
-        Change(Animalstate.idle);
+        exp = Mathf.Clamp(exp + add, 0f, 1000f); // Mathf.Clamp(검사할 값, 최소값, 최대값);
     }
 }

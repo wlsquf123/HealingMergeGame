@@ -2,21 +2,25 @@ using UnityEngine;
 
 public class Drag : MonoBehaviour
 {
-    [Header("고정할 Y축 높이")]
-    [SerializeField] private float targetY = 5f; // 인스펙터에서 원하는 높이로 수정 가능
+    [Header("땅에서 띄울 높이")]
+    float groundOffset = 1f;
+
+    [Header("땅으로 사용할 레이어")]
+    public LayerMask groundMask;
 
     private void OnMouseDrag()
     {
-        Vector3 mousPos = Input.mousePosition;
-        mousPos.z = Camera.main.transform.position.y;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // 화면 좌표를 월드 좌표로 변환
-        Vector3 targetPos = Camera.main.ScreenToWorldPoint(mousPos);
+        // 마우스 아래의 땅을 찾음
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundMask, QueryTriggerInteraction.Ignore))
+        {
+            Vector3 targetPosition = hit.point;
 
-        // Y 축 값을 지정한 높이로 강제 고정
-        targetPos.y = targetY;
+            // 현재 땅 높이에서 5만큼 위로 배치
+            targetPosition.y += groundOffset;
 
-        // 최종 위치 적용
-        transform.position = targetPos;
+            transform.position = targetPosition;
+        }
     }
 }

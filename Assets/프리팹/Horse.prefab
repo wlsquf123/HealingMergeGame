@@ -3215,7 +3215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a914c95b067b7047abde9f217081336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Drag
-  targetY: 10
+  groundOffset: 1
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &137072251557839663
 BoxCollider:
   m_ObjectHideFlags: 0

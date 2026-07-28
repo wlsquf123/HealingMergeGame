@@ -8,6 +8,24 @@ public class UIManager : MonoBehaviour
     public Image MergedSelect; // 머지 선택
     public Button AnimalButton; // 동물 버튼
 
+    public Text pointText; // 포인트 텍스트
+    public Text DayText; // 일 시 분
+
+
+    void Update()
+    {
+        StateUI();
+    }
+
+    public void StateUI()
+    {
+        var gameManager = GameManager.instance;
+
+
+        DayText.text = "Day" + gameManager.Day.ToString() + "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00");
+        pointText.text = "포인트: " + gameManager.point.ToString();
+    }
+
     public void OpenAnimallists(int Ranking, Vector3 mergePosition)
     {
         MergedSelect.gameObject.SetActive(true); // 머지 선택창 활성화

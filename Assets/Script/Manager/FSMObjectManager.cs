@@ -14,19 +14,26 @@ public class FSMObjectManager : MonoBehaviour
 
     public bool isFood = false;
     public bool isWater = false;
+    public bool isTree = false;
 
-    public void FoodButton()
+    public void AddButton(int index)
     {
-        isFood = true;
-    }
-
-    public void WaterButton()
-    {
-        isWater = true;
+        switch (index)
+        {
+            case 1:
+                isFood = true;
+                break;
+            case 2: 
+                isWater = true;
+                break;
+            case 3:
+                isTree = true;
+                break;
+        }
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (isFood || isWater))
+        if (Input.GetMouseButtonDown(0) && (isFood || isWater || isTree) )
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -45,6 +52,11 @@ public class FSMObjectManager : MonoBehaviour
                 {
                     WaterBowl.Add(Instantiate(WaterBowlPrefab, spawnPos, Quaternion.identity));
                     isWater = false;
+                }
+                else if (isTree)
+                {
+                    TreeShades.Add(Instantiate(TreeShadesPrefab, spawnPos, Quaternion.identity));
+                    isTree = false;
                 }
             }
         }
