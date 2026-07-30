@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class TreeEnter : MonoBehaviour
+public class OasisEnter : MonoBehaviour
 {
     private void OnTriggerStay(Collider other)
     {
         var An = other.GetComponent<Animal>();
-        if (!other.CompareTag("Animal") || An.hp > 30f) return;
-        An.AddExp(4); // 경험치 증가
-        An.hp = 100f;
+        if (!other.CompareTag("Animal") || An.water > 30) return;
+
+        An.water = 100f;
+        An.AddExp(3f);
         An.Change(Animalstate.Idle);
     }
 }

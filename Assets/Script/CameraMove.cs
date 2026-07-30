@@ -5,11 +5,13 @@ public class CameraMove : MonoBehaviour
     public float MoveSpeed = 10f;
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (Input.GetMouseButton(1))
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                MoveSpeed = 20f;
+                MoveSpeed = 20f; // 시프트 시 속도 20 증가
             }
             else
             {

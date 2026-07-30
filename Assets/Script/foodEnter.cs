@@ -8,7 +8,7 @@ public class FoodEnter : MonoBehaviour
         if (!other.CompareTag("Animal") || An.food > 30f) return;
         An.AddExp(5f);
         An.food = 100f;
-        An.Change(Animalstate.idle);
+        An.Change(Animalstate.Idle);
         GameManager.instance.FSMObjectManager.FoodBowl.Remove(transform.parent.gameObject);
         Destroy(transform.parent.gameObject);
     }

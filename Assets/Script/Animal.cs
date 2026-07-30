@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Animalstate
 {
     None,
     Move, // 이동
-    idle, // 대기
+    Idle, // 대기
     Eat,   // 먹기
     Drink, // 물 마시기
     Rest // 휴식
@@ -12,7 +13,7 @@ public enum Animalstate
 
 public class Animal : MonoBehaviour
 {
-    public Animalstate StateType = Animalstate.idle;
+    public Animalstate StateType = Animalstate.Idle;
     public string animalName; // 이름
     public float exp = 0f; // 경험치
     public int Lv = 1; // 레벨
@@ -21,6 +22,12 @@ public class Animal : MonoBehaviour
     public float hp = 100f; // 체력
     public float speed = 2f; // 이동속도
     public int Rating = 1; // 등급
+
+    public Text LvText;
+    public Image expBar;
+    public Image foodBar;
+    public Image waterBar;
+    public Image hpBar;
 
     public float idleTimer = 2f;
     public float foodTimer = 0;
@@ -32,9 +39,7 @@ public class Animal : MonoBehaviour
         // 업데이트에서는 상태 체크만 한다!!
         switch (StateType)
         {
-            case Animalstate.None:
-                break;
-            case Animalstate.idle:
+            case Animalstate.Idle:
                 IdleState();
                 break;
             case Animalstate.Move:
@@ -64,12 +69,14 @@ public class Animal : MonoBehaviour
     Vector3 moveDirection = Vector3.zero;
     public void MoveState()
     {
+        if (food <= 0 || water <= 0 || hp <= 0) return;
+
         idleTimer -= Time.deltaTime;
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         transform.rotation = Quaternion.LookRotation(moveDirection);
         if (idleTimer <= 0)
         {
-            Change(Animalstate.idle);
+            Change(Animalstate.Idle);
         }
     }
 
@@ -79,7 +86,7 @@ public class Animal : MonoBehaviour
 
         if (foodOBJ == null || foodOBJ.Count == 0) // 리스트에서 foodOBJ가 없으면? 돌아가라
         {
-            Change(Animalstate.idle);
+            Change(Animalstate.Idle);
             return;
         }
 
@@ -106,7 +113,7 @@ public class Animal : MonoBehaviour
         var waterOBJ = GameManager.instance.FSMObjectManager.WaterBowl;
         if (waterOBJ == null || waterOBJ.Count == 0)
         {
-            Change(Animalstate.idle);
+            Change(Animalstate.Idle);
             return;
         }
 
@@ -132,7 +139,7 @@ public class Animal : MonoBehaviour
         var TreeOBJ = GameManager.instance.FSMObjectManager.TreeShades;
         if (TreeOBJ == null || TreeOBJ.Count == 0)
         {
-            Change(Animalstate.idle);
+            Change(Animalstate.Idle);
             return;
         }
 
@@ -159,7 +166,7 @@ public class Animal : MonoBehaviour
 
         switch (StateType)
         {
-            case Animalstate.idle:
+            case Animalstate.Idle:
                 idleTimer = 2f;
                 break;
             case Animalstate.Move:
@@ -173,35 +180,51 @@ public class Animal : MonoBehaviour
 
     public void State()
     {
-        foodTimer += Time.deltaTime;
-        waterAndHpTimer += Time.deltaTime;
+        // UI
+        LvText.text = Lv.ToString();            // 레벨
+        expBar.fillAmount = exp / 1000f;        // 경험치
+        foodBar.fillAmount = food / 100f;       // 배고픔
+        waterBar.fillAmount = water / 100f;     // 물
+        hpBar.fillAmount = hp / 100f;           // 체력
 
-        if (foodTimer >= 12f) // 밥통 1시간마다 감소 
+        waterAndHpTimer += Time.deltaTime;
+        foodTimer += Time.deltaTime;
+
+        if (foodTimer >= 12f)
         {
-            food -= 10f;
-            foodTimer = 0;
+            food -= 10f; // 배고픔 10 감소
+
+            food = Mathf.Clamp(food, 0f, 100f);
+
+            foodTimer -= 12f;
         }
-        if (waterAndHpTimer >= 6f) // 물, 체력 30분 마다 감소
+
+        if (waterAndHpTimer >= 6f)
         {
-            water -= 10f;
-            hp -= 5f;
-            waterAndHpTimer = 0;
+            hp -= 5f; // 체력 5 감소
+            water -= 10f; // 물 10 감소
+
+            water = Mathf.Clamp(water, 0f, 100f);
+            hp = Mathf.Clamp(hp, 0f, 100f);
+
+            waterAndHpTimer -= 6;
         }
 
         // 먹기, 마시기, 휴식 상태
+        if (food <= 0 || water <= 0 || hp <= 0) return;
         if (StateType == Animalstate.Eat || StateType == Animalstate.Drink || StateType == Animalstate.Rest) return;
 
-        if (food <= 30f)
+        if (food <= 30f && GameManager.instance.FSMObjectManager.FoodBowl.Count > 0)
         {
             Change(Animalstate.Eat);
         }
 
-        if (water <= 30f)
+        else if (water <= 30f && GameManager.instance.FSMObjectManager.WaterBowl.Count > 0)
         {
             Change(Animalstate.Drink);
         }
 
-        if (hp <= 30f)
+        else if (hp <= 30f && GameManager.instance.FSMObjectManager.TreeShades.Count > 0)
         {
             Change(Animalstate.Rest);
         }

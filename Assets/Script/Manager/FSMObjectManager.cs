@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FSMObjectManager : MonoBehaviour
@@ -45,18 +44,27 @@ public class FSMObjectManager : MonoBehaviour
 
                 if (isFood)
                 {
-                    FoodBowl.Add(Instantiate(FoodBowlPrefab, spawnPos, Quaternion.identity));
                     isFood = false;
+                    if (GameManager.instance.usePoint(10f))
+                    {
+                        FoodBowl.Add(Instantiate(FoodBowlPrefab, spawnPos, Quaternion.identity));
+                    }
                 }
                 else if (isWater)
                 {
-                    WaterBowl.Add(Instantiate(WaterBowlPrefab, spawnPos, Quaternion.identity));
                     isWater = false;
+                    if (GameManager.instance.usePoint(10f))
+                    {
+                        WaterBowl.Add(Instantiate(WaterBowlPrefab, spawnPos, Quaternion.identity));
+                    }
                 }
                 else if (isTree)
                 {
-                    TreeShades.Add(Instantiate(TreeShadesPrefab, spawnPos, Quaternion.identity));
                     isTree = false;
+                    if (GameManager.instance.usePoint(20f))
+                    {
+                        TreeShades.Add(Instantiate(TreeShadesPrefab, spawnPos, Quaternion.identity));
+                    }
                 }
             }
         }

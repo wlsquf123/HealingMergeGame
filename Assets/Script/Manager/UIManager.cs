@@ -9,8 +9,12 @@ public class UIManager : MonoBehaviour
     public Button AnimalButton; // 동물 버튼
 
     public Text pointText; // 포인트 텍스트
+    public Text ScoreText; // 점수 텍스트
     public Text DayText; // 일 시 분
 
+    public Image stopImage;
+    public Image endGameImage;
+    public Text endScoreText;
 
     void Update()
     {
@@ -21,15 +25,16 @@ public class UIManager : MonoBehaviour
     {
         var gameManager = GameManager.instance;
 
-
-        DayText.text = "Day" + gameManager.Day.ToString() + "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00");
-        pointText.text = "포인트: " + gameManager.point.ToString();
+        pointText.text = "포인트: " + gameManager.point.ToString(); // 포인트
+        ScoreText.text = "스코어: " + gameManager.score.ToString(); // 점수
+        endScoreText.text = "최종점수: " + gameManager.endScore.ToString(); // 최종 점수
+        DayText.text = "Day" + gameManager.Day.ToString() + "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00"); // 시간
     }
 
     public void OpenAnimallists(int Ranking, Vector3 mergePosition)
     {
         MergedSelect.gameObject.SetActive(true); // 머지 선택창 활성화
-        GameObject[] x = AnimalList.GetAnimalList(++Ranking);
+        GameObject[] x = AnimalList.GetAnimalList(Ranking);
 
         for (int i = 0; i < x.Length; i++)
         {
@@ -40,7 +45,7 @@ public class UIManager : MonoBehaviour
 
             GameObject animalPrefab = x[i];
 
-            newButton.onClick.AddListener(() => AnimalClick(animalPrefab, mergePosition)); // 얘 일단은 나중에 이해를 해야겠네 하하.
+            newButton.onClick.AddListener(() => AnimalClick(animalPrefab, mergePosition));
         }
     }
 
@@ -53,5 +58,11 @@ public class UIManager : MonoBehaviour
         {
             Destroy(MergedSelect.transform.GetChild(i).gameObject);
         }
+    }
+
+    public void StopUI() // 일시정지
+    {
+        stopImage.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
