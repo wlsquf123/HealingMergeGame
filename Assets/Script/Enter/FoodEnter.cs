@@ -9,7 +9,7 @@ public class FoodEnter : MonoBehaviour
         An.AddExp(5f);
         An.food = 100f;
         An.Change(Animalstate.Idle);
-        GameManager.instance.FSMObjectManager.FoodBowl.Remove(transform.parent.gameObject);
-        Destroy(transform.parent.gameObject);
+        GameManager.instance.FSMObjectManager.FoodBowl.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

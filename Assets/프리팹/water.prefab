@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2527104491374928779}
   - component: {fileID: 4184408900998367592}
-  - component: {fileID: 719750408281425313}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -48,24 +47,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &719750408281425313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2552107067777771747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ffdc7abe7146384c9de3654bf741497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterEnter
 --- !u!1 &5913014302347234481
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,8 +64,9 @@ GameObject:
   - component: {fileID: 3402851427852571946}
   - component: {fileID: 2290347329260631566}
   - component: {fileID: 4133835336499100498}
-  - component: {fileID: 9185869404126048810}
   - component: {fileID: 5489844277150277230}
+  - component: {fileID: 5097748496871219987}
+  - component: {fileID: 9185869404126048810}
   - component: {fileID: 3024294216446123802}
   m_Layer: 0
   m_Name: water
@@ -136,7 +124,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a4fc78cf367bbb449116ccd20da10b0, type: 2}
+  - {fileID: 2100000, guid: 48af1663697797b4281ccbc13d11a11e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,27 +148,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9185869404126048810
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5913014302347234481}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5592177, y: 1, z: 0.48734987}
-  m_Center: {x: -0.0847379, y: 0, z: 0.040427506}
 --- !u!114 &5489844277150277230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +163,39 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &5097748496871219987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913014302347234481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffdc7abe7146384c9de3654bf741497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterEnter
+--- !u!65 &9185869404126048810
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913014302347234481}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5592177, y: 1, z: 0.48734987}
+  m_Center: {x: -0.0847379, y: 0, z: 0.040427506}
 --- !u!54 &3024294216446123802
 Rigidbody:
   m_ObjectHideFlags: 0

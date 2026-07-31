@@ -9,7 +9,7 @@ public class WaterEnter : MonoBehaviour
         An.AddExp(3); // 경험치 증가
         An.water = 100f;
         An.Change(Animalstate.Idle);
-        GameManager.instance.FSMObjectManager.WaterBowl.Remove(transform.parent.gameObject);
-        Destroy(transform.parent.gameObject);
+        GameManager.instance.FSMObjectManager.WaterBowl.Remove(gameObject);
+        Destroy(gameObject);
     }
 }

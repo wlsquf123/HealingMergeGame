@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2310467886468841103}
   - component: {fileID: 6590621883970835045}
   - component: {fileID: 8160026033914018975}
-  - component: {fileID: 6541001766543180596}
   - component: {fileID: -1390430311907429119}
+  - component: {fileID: 8203215086782329759}
+  - component: {fileID: 6541001766543180596}
   - component: {fileID: 6876471968889303509}
   m_Layer: 0
   m_Name: foodbowl
@@ -94,27 +95,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6541001766543180596
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949812381212675706}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6932554, y: 0.90580463, z: 0.58999777}
-  m_Center: {x: -0.016124249, y: -0.047097683, z: -0.0005366802}
 --- !u!114 &-1390430311907429119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +110,39 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8203215086782329759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949812381212675706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6435927fb878d9241b39192ccfcf69ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodEnter
+--- !u!65 &6541001766543180596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949812381212675706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6932554, y: 0.90580463, z: 0.58999777}
+  m_Center: {x: -0.016124249, y: -0.047097683, z: -0.0005366802}
 --- !u!54 &6876471968889303509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,7 +180,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4061917990296142155}
   - component: {fileID: 1684122653356416715}
-  - component: {fileID: 1281371077591472095}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -205,21 +217,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1281371077591472095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7762870265560176657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6435927fb878d9241b39192ccfcf69ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoodEnter

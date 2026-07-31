@@ -3428,7 +3428,7 @@ MonoBehaviour:
   food: 50
   water: 50
   hp: 100
-  speed: 2
+  speed: 5
   Rating: 3
   LvText: {fileID: 2346671736993218523}
   expBar: {fileID: 2943245220063516662}

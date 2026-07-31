@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,8 @@ public class Animal : MonoBehaviour
     public float food = 50f; // 포만도
     public float water = 50f; // 수분유지
     public float hp = 100f; // 체력
-    public float speed = 2f; // 이동속도
+    public float speed = 5f; // 이동속도
+    private float currentSpeed; // 진짜 이동속도
     public int Rating = 1; // 등급
 
     public Text LvText;
@@ -35,7 +37,9 @@ public class Animal : MonoBehaviour
 
     private void Update()
     {
+        UpdateSpeed();
         State();
+
         // 업데이트에서는 상태 체크만 한다!!
         switch (StateType)
         {
@@ -57,7 +61,7 @@ public class Animal : MonoBehaviour
         }
     }
 
-    public void IdleState()
+    public void IdleState() // 대기
     {
         idleTimer -= Time.deltaTime;
         if (idleTimer <= 0)
@@ -66,14 +70,16 @@ public class Animal : MonoBehaviour
         }
     }
 
+
     Vector3 moveDirection = Vector3.zero;
-    public void MoveState()
+    public void MoveState() // 이동
     {
         if (food <= 0 || water <= 0 || hp <= 0) return;
 
-        idleTimer -= Time.deltaTime;
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
         transform.rotation = Quaternion.LookRotation(moveDirection);
+
+        idleTimer -= Time.deltaTime;
         if (idleTimer <= 0)
         {
             Change(Animalstate.Idle);
@@ -82,82 +88,56 @@ public class Animal : MonoBehaviour
 
     public void EatState() // 먹기
     {
-        var foodOBJ = GameManager.instance.FSMObjectManager.FoodBowl;
-
-        if (foodOBJ == null || foodOBJ.Count == 0) // 리스트에서 foodOBJ가 없으면? 돌아가라
-        {
-            Change(Animalstate.Idle);
-            return;
-        }
-
-        GameObject nearestBowl = null;
-        float nearestDistance = 9999999f; // 가장 가까운 거리 저장
-
-        foreach (var bowl in foodOBJ) //foodOBJ 리스트에 들어있는 모든 밥통을 하나씩 순서대로 꺼내어 검사
-        {
-            float currentDistance = Vector3.Distance(transform.position, bowl.transform.position); // 현재거리에 저장
-
-            if (currentDistance < nearestDistance) // 현재거리가 저장된 가장가까운 거리보다 더 가깝냐? 맞으면 아래 실행
-            {
-                nearestDistance = currentDistance; // 가장가까운거리에 저장
-                nearestBowl = bowl; // 가장 가까운 밥통 객체에도 저장
-            }
-        }
-        transform.LookAt(nearestBowl.transform);
-        idleTimer -= Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nearestBowl.transform.position, speed * Time.deltaTime);
+        MoveToTarget(GameManager.instance.FSMObjectManager.FoodBowl);
     }
 
     public void DrnkState() // 마시기
     {
-        var waterOBJ = GameManager.instance.FSMObjectManager.WaterBowl;
-        if (waterOBJ == null || waterOBJ.Count == 0)
-        {
-            Change(Animalstate.Idle);
-            return;
-        }
-
-        GameObject nearestBowl = null;
-        float nearestDistance = 9999999f;
-
-        foreach (var bowl in waterOBJ)
-        {
-            float currentDistance = Vector3.Distance(transform.position, bowl.transform.position);
-            if (currentDistance <= nearestDistance)
-            {
-                nearestDistance = currentDistance;
-                nearestBowl = bowl;
-            }
-        }
-        transform.LookAt(nearestBowl.transform);
-        idleTimer -= Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nearestBowl.transform.position, speed * Time.deltaTime);
+        MoveToTarget(GameManager.instance.FSMObjectManager.WaterBowl);
     }
 
     public void RestState() // 쉬기
     {
-        var TreeOBJ = GameManager.instance.FSMObjectManager.TreeShades;
-        if (TreeOBJ == null || TreeOBJ.Count == 0)
+        MoveToTarget(GameManager.instance.FSMObjectManager.TreeShades);
+    }
+
+    public void MoveToTarget(List<GameObject> targetList)
+    {
+        if (targetList == null || targetList.Count == 0)
         {
             Change(Animalstate.Idle);
             return;
         }
 
-        GameObject nearestBowl = null;
-        float nearestDistance = 9999999f;
+        GameObject nearestTarget = null;
+        float nearestDistance = Mathf.Infinity; // 9999999f 대신 무한대를 뜻하는 멋진 코드입니다.
 
-        foreach (var bowl in TreeOBJ)
+        // 가장 가까운 타겟 찾기
+        foreach (var target in targetList)
         {
-            float currentDistance = Vector3.Distance(transform.position, bowl.transform.position);
-            if (currentDistance <= nearestDistance)
+            float currentDistance = Vector3.Distance(transform.position, target.transform.position);
+            if (currentDistance < nearestDistance)
             {
                 nearestDistance = currentDistance;
-                nearestBowl = bowl;
+                nearestTarget = target;
             }
         }
-        transform.LookAt(nearestBowl.transform);
-        idleTimer -= Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nearestBowl.transform.position, speed * Time.deltaTime);
+
+        // 타겟을 향해 이동
+        transform.LookAt(nearestTarget.transform);
+        transform.position = Vector3.MoveTowards(transform.position, nearestTarget.transform.position, currentSpeed * Time.deltaTime);
+    }
+
+    public void UpdateSpeed() // 속도
+    {
+        if (GameManager.instance.weatherManager.currentWeather == WeatherType.Cloudy)
+        {
+            currentSpeed = speed * 0.5f; // 흐림일 때는 0.5로 곱하기
+        }
+        else
+        {
+            currentSpeed = speed; // 그 외에는 원래 속도(5f)로 덮어쓰기
+        }
     }
 
     public void Change(Animalstate state)
@@ -201,7 +181,13 @@ public class Animal : MonoBehaviour
 
         if (waterAndHpTimer >= 6f)
         {
-            hp -= 5f; // 체력 5 감소
+            float hpAmount = 5f;
+            if (GameManager.instance.weatherManager.currentWeather == WeatherType.Rain)
+            {
+                hpAmount = 10f;
+            }
+
+            hp -= hpAmount; // 체력 5 감소
             water -= 10f; // 물 10 감소
 
             water = Mathf.Clamp(water, 0f, 100f);
@@ -212,6 +198,7 @@ public class Animal : MonoBehaviour
 
         // 먹기, 마시기, 휴식 상태
         if (food <= 0 || water <= 0 || hp <= 0) return;
+
         if (StateType == Animalstate.Eat || StateType == Animalstate.Drink || StateType == Animalstate.Rest) return;
 
         if (food <= 30f && GameManager.instance.FSMObjectManager.FoodBowl.Count > 0)
