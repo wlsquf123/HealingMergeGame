@@ -109,7 +109,7 @@ public class WeatherManager : MonoBehaviour
             // 번개 소환
             Instantiate(thunderEffectPrefab, spawnPos, Quaternion.identity);
 
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(3f); // 10초 후 자기자신 호출
 
             StartCoroutine(SpawnThunder());
         }

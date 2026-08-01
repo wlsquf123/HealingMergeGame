@@ -104,3 +104,6 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+/Assets/2025 게임개발 리소스/
+/Assets/2025 게임개발 리소스.meta

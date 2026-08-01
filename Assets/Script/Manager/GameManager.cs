@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public UIManager UImanager;
     public FSMObjectManager FSMObjectManager;
     public WeatherManager weatherManager;
+    public InventoryManager inventoryManager;
 
     public float DayTIme = 0; // Ω√∞£
     public float Day = 1f; // ¿œ
