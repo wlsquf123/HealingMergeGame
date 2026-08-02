@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+    
 public class FSMObjectManager : MonoBehaviour
 {
     public List<GameObject> FoodBowl;
@@ -14,6 +14,8 @@ public class FSMObjectManager : MonoBehaviour
     public bool isFood = false;
     public bool isWater = false;
     public bool isTree = false;
+    public bool isFoodItem = false;
+    public bool isWaterItem = false;
 
     public void AddButton(int index)
     {
@@ -28,11 +30,18 @@ public class FSMObjectManager : MonoBehaviour
             case 3:
                 isTree = true;
                 break;
+            case 4:
+                isFoodItem = true;
+                break;
+            case 5:
+                isWaterItem = true;
+                break;
+
         }
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && (isFood || isWater || isTree) )
+        if (Input.GetMouseButtonDown(0) && (isFood || isWater || isTree || isFoodItem || isWaterItem) )
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -65,6 +74,16 @@ public class FSMObjectManager : MonoBehaviour
                     {
                         TreeShades.Add(Instantiate(TreeShadesPrefab, spawnPos, Quaternion.identity));
                     }
+                }
+                else if (isFoodItem)
+                {
+                    isFoodItem = false;
+                    FoodBowl.Add(Instantiate(FoodBowlPrefab, spawnPos, Quaternion.identity));
+                }
+                else if (isWaterItem)
+                {
+                    isWaterItem = false;
+                    WaterBowl.Add(Instantiate(WaterBowlPrefab, spawnPos, Quaternion.identity));
                 }
             }
         }

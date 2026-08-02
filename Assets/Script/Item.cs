@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 public enum Items
 {
     None,
@@ -18,7 +19,6 @@ public class Item : MonoBehaviour
     private void OnMouseDown()
     {
         if (Time.timeScale == 0f) return;
-
         GameManager.instance.inventoryManager.AddItem(ItemType);
         Destroy(gameObject);
     }

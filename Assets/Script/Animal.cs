@@ -24,6 +24,7 @@ public class Animal : MonoBehaviour
     public float speed = 5f; // 이동속도
     private float currentSpeed; // 진짜 이동속도
     public int Rating = 1; // 등급
+    public bool isThunder = false;
 
     public Text LvText;
     public Image expBar;
@@ -147,12 +148,12 @@ public class Animal : MonoBehaviour
         switch (StateType)
         {
             case Animalstate.Idle:
-                idleTimer = 2f;
+                idleTimer = 60f;
                 break;
             case Animalstate.Move:
-                moveDirection.x = Random.Range(-5f, 5f);
-                moveDirection.z = Random.Range(-5f, 5f);
-                idleTimer = 2f;
+                moveDirection.x = Random.Range(-3f, 3f);
+                moveDirection.z = Random.Range(-3f, 3f);
+                idleTimer = 3f;
                 AddExp(1f);
                 break;
         }
@@ -170,16 +171,16 @@ public class Animal : MonoBehaviour
         waterAndHpTimer += Time.deltaTime;
         foodTimer += Time.deltaTime;
 
-        if (foodTimer >= 12f)
+        if (foodTimer >= 25f)
         {
             food -= 10f; // 배고픔 10 감소
 
             food = Mathf.Clamp(food, 0f, 100f);
 
-            foodTimer -= 12f;
+            foodTimer -= 25f;
         }
 
-        if (waterAndHpTimer >= 6f)
+        if (waterAndHpTimer >= 12.5f)
         {
             float hpAmount = 5f;
             if (GameManager.instance.weatherManager.currentWeather == WeatherType.Rain)
@@ -193,7 +194,7 @@ public class Animal : MonoBehaviour
             water = Mathf.Clamp(water, 0f, 100f);
             hp = Mathf.Clamp(hp, 0f, 100f);
 
-            waterAndHpTimer -= 6;
+            waterAndHpTimer -= 12.5f;
         }
 
         // 먹기, 마시기, 휴식 상태

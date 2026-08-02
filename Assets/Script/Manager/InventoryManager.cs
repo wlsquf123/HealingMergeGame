@@ -1,107 +1,161 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    [Header("인벤토리 설정")]
-    public int maxSlots = 7;
+    [Header("아이템 최대 개수")]
     public int maxStack = 30;
 
-    public Items[] slots;
-    public int[] slotCounts;
+    [Header("아이템 수량")]
+    public int foodCount;
+    public int waterCount;
+    public int autoFoodCount;
+    public int autoWaterCount;
+    public int autoHpCount;
+    public int thunderCount;
 
-    [Header("슬롯 UI")]
-    public Text[] slotTexts;
-    public Button[] slotButtons;
+    [Header("아이템 버튼")]
+    public Button foodButton;
+    public Button waterButton;
+    public Button autoFoodButton;
+    public Button autoWaterButton;
+    public Button autoHpButton;
+    public Button thunderButton;
 
-    private void Awake()
+    [Header("수량 텍스트")]
+    public Text foodCountText;
+    public Text waterCountText;
+    public Text autoFoodCountText;
+    public Text autoWaterCountText;
+    public Text autoHpCountText;
+    public Text thunderCountText;
+
+    private void Update()
     {
-        slots = new Items[maxSlots];
-        slotCounts = new int[maxSlots];
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < maxSlots; i++)
-            UpdateSlotUI(i);
+        UpdateInventoryUI();
     }
 
     // 아이템 획득
-    public bool AddItem(Items item)
-    {
-        if (item == Items.None) return false;
-
-        // 1. 이미 같은 아이템을 가지고 있는지 먼저 확인
-        for (int i = 0; i < maxSlots; i++)
-        {
-            if (slots[i] == item)
-            {
-                if (slotCounts[i] >= maxStack) return false; // 최대치 초과
-
-                slotCounts[i]++;
-                UpdateSlotUI(i);
-                return true;
-            }
-        }
-
-        // 2. 같은 아이템이 없다면, 앞에서부터 빈 슬롯 찾기
-        for (int i = 0; i < maxSlots; i++)
-        {
-            if (slots[i] == Items.None)
-            {
-                slots[i] = item;
-                slotCounts[i] = 1;
-                UpdateSlotUI(i);
-                return true;
-            }
-        }
-
-        return false; // 인벤토리가 가득 참
-    }
-
-    // 슬롯 버튼 클릭 (아이템 소비)
-    public void OnClickSlot(int index) => RemoveItem(index);
-
-    // 아이템 1개 감소
-    public bool RemoveItem(int index)
-    {
-        if (slots[index] == Items.None) return false;
-
-        slotCounts[index]--; // 수량 1 감소
-
-        // 감소 후 수량이 0이 되면 슬롯 비우기
-        if (slotCounts[index] <= 0)
-        {
-            slots[index] = Items.None;
-            slotCounts[index] = 0;
-        }
-
-        UpdateSlotUI(index);
-        return true;
-    }
-
-    // 슬롯 UI 갱신
-    private void UpdateSlotUI(int index)
-    {
-        // 아이템이 있는지 여부만 확인 (수량이 0이면 RemoveItem에서 None으로 바꾸므로 이것만 체크해도 충분함)
-        bool hasItem = slots[index] != Items.None;
-
-        slotButtons[index].gameObject.SetActive(hasItem);
-        slotTexts[index].text = hasItem ? $"{GetItemNameKor(slots[index])}\nx{slotCounts[index]}" : "";
-    }
-
-    // 선호하시는 switch문 형태 (가독성을 위해 한 줄 배치)
-    private string GetItemNameKor(Items item)
+    public void AddItem(Items item)
     {
         switch (item)
         {
-            case Items.foodItem: return "먹이";
-            case Items.waterItem: return "물";
-            case Items.autoAllFoodItem: return "포만 회복";
-            case Items.autoAllWaterItem: return "수분 회복";
-            case Items.autoAllHpItem: return "체력 회복";
-            case Items.autoAllThunderItem: return "천둥 방어";
-            default: return "";
+            case Items.foodItem:
+                if (foodCount >= maxStack) return;
+                foodCount++;
+                break;
+
+            case Items.waterItem:
+                if (waterCount >= maxStack) return;
+                waterCount++;
+                break;
+
+            case Items.autoAllFoodItem:
+                if (autoFoodCount >= maxStack) return;
+                autoFoodCount++;
+                break;
+
+            case Items.autoAllWaterItem:
+                if (autoWaterCount >= maxStack) return;
+                autoWaterCount++;
+                break;
+
+            case Items.autoAllHpItem:
+                if (autoHpCount >= maxStack) return;
+                autoHpCount++;
+                break;
+
+            case Items.autoAllThunderItem:
+                if (thunderCount >= maxStack) return;
+                thunderCount++;
+                break;
         }
     }
+
+    // 모든 버튼과 수량 표시 갱신
+    private void UpdateInventoryUI()
+    {
+        foodButton.gameObject.SetActive(foodCount > 0);
+        waterButton.gameObject.SetActive(waterCount > 0);
+        autoFoodButton.gameObject.SetActive(autoFoodCount > 0);
+        autoWaterButton.gameObject.SetActive(autoWaterCount > 0);
+        autoHpButton.gameObject.SetActive(autoHpCount > 0);
+        thunderButton.gameObject.SetActive(thunderCount > 0);
+
+        foodCountText.text = "먹이 " + "x" + foodCount;
+        waterCountText.text = "물 " + "x" + waterCount;
+        autoFoodCountText.text = "전체 먹이 " + "x" + autoFoodCount;
+        autoWaterCountText.text = "전체 물 " + "x" + autoWaterCount;
+        autoHpCountText.text = "전체 회복 " + "x" + autoHpCount;
+        thunderCountText.text = "천둥 방어 " + "x" + thunderCount;
+    }
+
+    public void UseItem(int index)
+    {
+        switch (index)
+        {
+            case 0: // 먹이
+                foodCount--;
+                break;
+            case 1: // 물
+                waterCount--;
+                break;
+            case 2: // 전체 포만도
+                autoFoodCount--;
+                StartCoroutine(AllRecovery(Items.autoAllFoodItem));
+                break;
+            case 3: // 전체 수분
+                autoWaterCount--;
+                StartCoroutine(AllRecovery(Items.autoAllWaterItem));
+                break;
+            case 4: // 전체 체력
+                autoHpCount--;
+                StartCoroutine(AllRecovery(Items.autoAllHpItem));
+                break;
+            case 5: // 천둥 방어
+                thunderCount--;
+                Animal[] animals = FindObjectsByType<Animal>(FindObjectsSortMode.None);
+                foreach (Animal animal in animals)
+                {
+                    animal.isThunder = true;
+                }
+                break;
+        }
+    }
+    private IEnumerator AllRecovery(Items item)
+    {
+        // 60초 동안 반복
+        for (int i = 0; i < 60; i++)
+        {
+            yield return new WaitForSeconds(1f);
+
+            Animal[] animals =
+                FindObjectsByType<Animal>(FindObjectsSortMode.None);
+
+            foreach (Animal animal in animals)
+            {
+                switch (item)
+                {
+                    case Items.autoAllFoodItem:
+                        animal.food =
+                            Mathf.Clamp(animal.food + 1f, 0f, 100f);
+                        break;
+
+                    case Items.autoAllWaterItem:
+                        animal.water =
+                            Mathf.Clamp(animal.water + 1f, 0f, 100f);
+                        break;
+
+                    case Items.autoAllHpItem:
+                        animal.hp =
+                            Mathf.Clamp(animal.hp + 1f, 0f, 100f);
+                        break;
+                }
+            }
+        }
+    }
+
+
+
 }

@@ -5449,7 +5449,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD3EC\uB9CC \uD68C\uBCF5 x3"
+  m_Text: "\uC804\uCCB4 \uCCB4\uB825 x0"
 --- !u!222 &89661574
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6155,6 +6155,8 @@ MonoBehaviour:
   isFood: 0
   isWater: 0
   isTree: 0
+  isFoodItem: 0
+  isWaterItem: 0
 --- !u!1 &267691967
 GameObject:
   m_ObjectHideFlags: 0
@@ -6304,7 +6306,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD3EC\uB9CC \uD68C\uBCF5 x3"
+  m_Text: "\uC804\uCCB4 \uBA39\uC774 x3"
 --- !u!222 &275833191
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6877,7 +6879,7 @@ GameObject:
   - component: {fileID: 348740539}
   - component: {fileID: 348740538}
   m_Layer: 0
-  m_Name: Button (Legacy) (5)
+  m_Name: ThnuderItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6949,7 +6951,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1992629881}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnClickSlot
+        m_MethodName: UseItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7067,7 +7069,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD3EC\uB9CC \uD68C\uBCF5 x3"
+  m_Text: "\uCC9C\uB465 \uBC29\uC5B4 x0"
 --- !u!222 &381974885
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7579,7 +7581,6 @@ MonoBehaviour:
   FSMObjectManager: {fileID: 252225834}
   weatherManager: {fileID: 244849926}
   inventoryManager: {fileID: 1992629881}
-  DayTIme: 0
   Day: 1
   h: 0
   m: 0
@@ -8077,7 +8078,7 @@ GameObject:
   - component: {fileID: 613520293}
   - component: {fileID: 613520292}
   m_Layer: 0
-  m_Name: Button (Legacy)
+  m_Name: FoodItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8149,12 +8150,24 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1992629881}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnClickSlot
+        m_MethodName: UseItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 252225834}
+        m_TargetAssemblyTypeName: FSMObjectManager, Assembly-CSharp
+        m_MethodName: AddButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8210,7 +8223,7 @@ GameObject:
   - component: {fileID: 634033113}
   - component: {fileID: 634033112}
   m_Layer: 0
-  m_Name: Button (Legacy) (4)
+  m_Name: AllWaterItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8282,12 +8295,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1992629881}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnClickSlot
+        m_MethodName: UseItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9234,7 +9247,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD3EC\uB9CC \uD68C\uBCF5 x3"
+  m_Text: "\uBA39\uC774 x0"
 --- !u!222 &986511500
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9397,7 +9410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD3EC\uB9CC \uD68C\uBCF5 x3"
+  m_Text: "\uC804\uCCB4 \uBB3C x0"
 --- !u!222 &1015997668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9715,9 +9728,9 @@ RectTransform:
   m_Children:
   - {fileID: 613520291}
   - {fileID: 2127860713}
-  - {fileID: 1962756062}
   - {fileID: 1312451658}
   - {fileID: 634033111}
+  - {fileID: 1962756062}
   - {fileID: 348740537}
   m_Father: {fileID: 1133734745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10202,7 +10215,7 @@ GameObject:
   - component: {fileID: 1312451660}
   - component: {fileID: 1312451659}
   m_Layer: 0
-  m_Name: Button (Legacy) (3)
+  m_Name: AllFoodItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10274,12 +10287,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1992629881}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnClickSlot
+        m_MethodName: UseItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11881,7 +11894,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD3EC\uB9CC \uD68C\uBCF5 x3"
+  m_Text: "\uBB3C x0"
 --- !u!222 &1662120938
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13401,7 +13414,7 @@ GameObject:
   - component: {fileID: 1962756064}
   - component: {fileID: 1962756063}
   m_Layer: 0
-  m_Name: Button (Legacy) (2)
+  m_Name: AllHpItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13473,12 +13486,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1992629881}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnClickSlot
+        m_MethodName: UseItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13629,24 +13642,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2947a989310c2d429a1da3106a830a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  maxSlots: 7
   maxStack: 30
-  slots: 
-  slotCounts: 
-  slotTexts:
-  - {fileID: 986511499}
-  - {fileID: 1662120937}
-  - {fileID: 89661573}
-  - {fileID: 275833190}
-  - {fileID: 1015997667}
-  - {fileID: 381974884}
-  slotButtons:
-  - {fileID: 613520292}
-  - {fileID: 2127860714}
-  - {fileID: 1962756063}
-  - {fileID: 1312451659}
-  - {fileID: 634033112}
-  - {fileID: 348740538}
+  foodCount: 0
+  waterCount: 0
+  autoFoodCount: 0
+  autoWaterCount: 0
+  autoHpCount: 0
+  thunderCount: 0
+  foodButton: {fileID: 613520292}
+  waterButton: {fileID: 2127860714}
+  autoFoodButton: {fileID: 1312451659}
+  autoWaterButton: {fileID: 634033112}
+  autoHpButton: {fileID: 1962756063}
+  thunderButton: {fileID: 348740538}
+  foodCountText: {fileID: 986511499}
+  waterCountText: {fileID: 1662120937}
+  autoFoodCountText: {fileID: 275833190}
+  autoWaterCountText: {fileID: 1015997667}
+  autoHpCountText: {fileID: 89661573}
+  thunderCountText: {fileID: 381974884}
 --- !u!4 &1992629882
 Transform:
   m_ObjectHideFlags: 0
@@ -14022,7 +14036,7 @@ GameObject:
   - component: {fileID: 2127860715}
   - component: {fileID: 2127860714}
   m_Layer: 0
-  m_Name: Button (Legacy) (1)
+  m_Name: WaterItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14094,12 +14108,24 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1992629881}
         m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
-        m_MethodName: OnClickSlot
+        m_MethodName: UseItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 252225834}
+        m_TargetAssemblyTypeName: FSMObjectManager, Assembly-CSharp
+        m_MethodName: AddButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public WeatherManager weatherManager;
     public InventoryManager inventoryManager;
 
-    public float DayTIme = 0; // 시간
     public float Day = 1f; // 일
     public float h; // 시
     public float m; // 분
@@ -66,13 +65,8 @@ public class GameManager : MonoBehaviour
 
     public void GameTIme()
     {
-        DayTIme += Time.deltaTime;
+        m+= Time.deltaTime * 2.4f;
 
-        if (DayTIme >= 0.2f) // 현실 시간 0.2초마다 게임 시간 1분 증가
-        {
-            m++;
-            DayTIme -= 0.2f;
-        }
         if (m >= 60)
         {
             h++;

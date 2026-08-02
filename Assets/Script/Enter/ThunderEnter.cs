@@ -10,7 +10,14 @@ public class ThunderEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Animal animal = other.GetComponentInParent<Animal>();
         if (!other.CompareTag("Animal")) return;
+
+        if (animal.isThunder == true)
+        {
+            animal.isThunder = false;
+            return;
+        }
 
         Destroy(other.gameObject);
     }
