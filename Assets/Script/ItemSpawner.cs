@@ -8,7 +8,6 @@ public class ItemSpawner : MonoBehaviour
 
     private void Update()
     {
-
         var trees = FindObjectsByType<TreeEnter>(FindObjectsSortMode.None);
 
         if (trees.Length == 0) return; // 나무가 0개면 돌아가라
@@ -18,10 +17,10 @@ public class ItemSpawner : MonoBehaviour
         TreeEnter treeEnter = trees[random];
         
         Timer += Time.deltaTime;
-        if (Timer >= 6f)
+        if (Timer >= 12.5f)
         {
-            Instantiate(itemPrefabs[randomItem], treeEnter.transform.position, transform.rotation);
-            Timer = 0;
+            Instantiate(itemPrefabs[randomItem], treeEnter.transform.position + treeEnter.transform.forward * 1.5f + Vector3.up * 4f, transform.rotation);
+            Timer -= 12.5f;
         }
     }
 

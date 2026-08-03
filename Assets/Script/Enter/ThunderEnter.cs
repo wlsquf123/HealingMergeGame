@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ThunderEnter : MonoBehaviour
@@ -5,7 +6,7 @@ public class ThunderEnter : MonoBehaviour
     private void Start()
     {
         // 생성되고 0.1초 뒤에 삭제
-        Destroy(gameObject, 0.3f);
+        Destroy(gameObject, 0.1f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,7 +19,6 @@ public class ThunderEnter : MonoBehaviour
             animal.isThunder = false;
             return;
         }
-
-        Destroy(other.gameObject);
+        Destroy(animal.gameObject);
     }
 }

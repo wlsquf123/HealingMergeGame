@@ -85,10 +85,10 @@ public class InventoryManager : MonoBehaviour
 
         foodCountText.text = "먹이 " + "x" + foodCount;
         waterCountText.text = "물 " + "x" + waterCount;
-        autoFoodCountText.text = "전체 먹이 " + "x" + autoFoodCount;
-        autoWaterCountText.text = "전체 물 " + "x" + autoWaterCount;
-        autoHpCountText.text = "전체 회복 " + "x" + autoHpCount;
-        thunderCountText.text = "천둥 방어 " + "x" + thunderCount;
+        autoFoodCountText.text = "전체 먹이 \n" + "x" + autoFoodCount;
+        autoWaterCountText.text = "전체 물 \n" + "x" + autoWaterCount;
+        autoHpCountText.text = "전체 회복 \n" + "x" + autoHpCount;
+        thunderCountText.text = "천둥 방어 \n" + "x" + thunderCount;
     }
 
     public void UseItem(int index)

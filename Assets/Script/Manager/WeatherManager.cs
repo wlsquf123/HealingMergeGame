@@ -36,7 +36,7 @@ public class WeatherManager : MonoBehaviour
 
             case WeatherType.Cloudy:
                 RenderSettings.fog = true;
-                RenderSettings.fogColor = new Color(0.7f, 0.7f, 0.7f);
+                RenderSettings.fogColor = new Color(0.5f, 0.5f, 0.5f);
                 rainParticle.SetActive(false);
                 Debug.Log("흐림 효과 적용");
                 break;
@@ -98,8 +98,9 @@ public class WeatherManager : MonoBehaviour
             int randomIndex = Random.Range(0, spawnPoints.Length);
 
             Vector3 spawnPos = spawnPoints[randomIndex].position;
+            spawnPos.y = 15f;
 
-            GameObject warning = Instantiate(thunderWarningPrefab, spawnPos, Quaternion.identity); // 장판 소환
+            GameObject warning = Instantiate(thunderWarningPrefab, spawnPos, transform.rotation = Quaternion.Euler(90f, 0f, 0f)); // 장판 소환
 
             yield return new WaitForSeconds(3f); // 3초 대기
 
@@ -109,7 +110,7 @@ public class WeatherManager : MonoBehaviour
             // 번개 소환
             Instantiate(thunderEffectPrefab, spawnPos, Quaternion.identity);
 
-            yield return new WaitForSeconds(3f); // 10초 후 자기자신 호출
+            yield return new WaitForSeconds(3f); // 3초 후 자기자신 호출
 
             StartCoroutine(SpawnThunder());
         }
