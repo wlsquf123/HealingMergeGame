@@ -32,9 +32,14 @@ public class Animal : MonoBehaviour
     public Image waterBar;
     public Image hpBar;
 
-    public float idleTimer = 2f;
+    public float idleTimer = 60f;
     public float foodTimer = 0;
     public float waterAndHpTimer = 0;
+
+    public float minMoveDistance = 3f; // 랜덤 이동 최소 거리
+    public float maxMoveDistance = 8f; // 랜덤 이동 최대 거리
+
+    private Vector3 moveTarget; // 랜덤 이동 목적지
 
     private void Update()
     {
@@ -47,15 +52,19 @@ public class Animal : MonoBehaviour
             case Animalstate.Idle:
                 IdleState();
                 break;
+
             case Animalstate.Move:
                 MoveState();
                 break;
+
             case Animalstate.Eat:
                 EatState();
                 break;
+
             case Animalstate.Drink:
-                DrnkState();
+                DrinkState();
                 break;
+
             case Animalstate.Rest:
                 RestState();
                 break;
@@ -65,40 +74,61 @@ public class Animal : MonoBehaviour
     public void IdleState() // 대기
     {
         idleTimer -= Time.deltaTime;
+
         if (idleTimer <= 0)
         {
-            Change(Animalstate.Move);
+            SelectRandomBehavior();
         }
     }
 
-
-    Vector3 moveDirection = Vector3.zero;
     public void MoveState() // 이동
     {
         if (food <= 0 || water <= 0 || hp <= 0) return;
 
-        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.LookRotation(moveDirection);
+        Vector3 direction = moveTarget - transform.position;
+        direction.y = 0f;
 
-        idleTimer -= Time.deltaTime;
-        if (idleTimer <= 0)
+        if (direction.sqrMagnitude > 0.01f)
         {
-            Change(Animalstate.Idle);
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
+
+        transform.position = Vector3.MoveTowards(transform.position, moveTarget, currentSpeed * Time.deltaTime);
+
+        if (transform.position == moveTarget)
+        {
+            SelectRandomBehavior();
         }
     }
 
     public void EatState() // 먹기
     {
+        if (food > 30)
+        {
+            SelectRandomBehavior();
+            return;
+        }
         MoveToTarget(GameManager.instance.FSMObjectManager.FoodBowl);
     }
 
-    public void DrnkState() // 마시기
+    public void DrinkState() // 마시기
     {
+        if (water > 30)
+        {
+            SelectRandomBehavior();
+            return;
+        }
         MoveToTarget(GameManager.instance.FSMObjectManager.WaterBowl);
     }
 
     public void RestState() // 쉬기
     {
+        // 이동 중에 체력이 30 초과로 회복되었다면 쉬러 가는 걸 취소하고 대기/이동 선택
+        if (hp > 30f)
+        {
+            SelectRandomBehavior();
+            return;
+        }
         MoveToTarget(GameManager.instance.FSMObjectManager.TreeShades);
     }
 
@@ -106,17 +136,18 @@ public class Animal : MonoBehaviour
     {
         if (targetList == null || targetList.Count == 0)
         {
-            Change(Animalstate.Idle);
+            SelectRandomBehavior();
             return;
         }
 
-        GameObject nearestTarget = null;
-        float nearestDistance = Mathf.Infinity; // 9999999f 대신 무한대를 뜻하는 멋진 코드입니다.
+        GameObject nearestTarget = targetList[0];
+        float nearestDistance = 999999999999f; // 바꾸지마 이거로 할거야
 
         // 가장 가까운 타겟 찾기
-        foreach (var target in targetList)
+        foreach (GameObject target in targetList)
         {
-            float currentDistance = Vector3.Distance(transform.position, target.transform.position);
+            float currentDistance = Vector3.SqrMagnitude(transform.position - target.transform.position);
+
             if (currentDistance < nearestDistance)
             {
                 nearestDistance = currentDistance;
@@ -131,13 +162,27 @@ public class Animal : MonoBehaviour
 
     public void UpdateSpeed() // 속도
     {
-        if (GameManager.instance.weatherManager.currentWeather == WeatherType.Cloudy)
+        if (GameManager.instance.weatherManager.currentWeather == WeatherType.Cloudy) // 날씨가 흐리면
         {
-            currentSpeed = speed * 0.5f; // 흐림일 때는 0.5로 곱하기
+            currentSpeed = speed * 0.5f;
         }
         else
         {
-            currentSpeed = speed; // 그 외에는 원래 속도(5f)로 덮어쓰기
+            currentSpeed = speed;
+        }
+    }
+
+    public void SelectRandomBehavior() // 이동과 대기 중 하나를 랜덤 선택
+    {
+        int randomState = Random.Range(0, 2);
+
+        if (randomState == 0)
+        {
+            Change(Animalstate.Move);
+        }
+        else
+        {
+            Change(Animalstate.Idle);
         }
     }
 
@@ -147,13 +192,12 @@ public class Animal : MonoBehaviour
 
         switch (StateType)
         {
-            case Animalstate.Idle:
+            case Animalstate.Idle: // 체인지 대기
                 idleTimer = 60f;
                 break;
-            case Animalstate.Move:
-                moveDirection.x = Random.Range(-3f, 3f);
-                moveDirection.z = Random.Range(-3f, 3f);
-                idleTimer = 3f;
+            case Animalstate.Move: // 체인지 움직임
+                Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
+                moveTarget = transform.position + randomDirection * Random.Range(minMoveDistance, maxMoveDistance);
                 AddExp(1f);
                 break;
         }
@@ -168,32 +212,30 @@ public class Animal : MonoBehaviour
         waterBar.fillAmount = water / 100f;     // 물
         hpBar.fillAmount = hp / 100f;           // 체력
 
-        waterAndHpTimer += Time.deltaTime;
         foodTimer += Time.deltaTime;
+        waterAndHpTimer += Time.deltaTime;
 
         if (foodTimer >= 25f)
         {
-            food -= 10f; // 배고픔 10 감소
-
-            food = Mathf.Clamp(food, 0f, 100f);
-
+            food = Mathf.Clamp(food - 10f, 0f, 100f); // 배고픔 10 감소
             foodTimer -= 25f;
         }
 
         if (waterAndHpTimer >= 12.5f)
         {
-            float hpAmount = 5f;
-            if (GameManager.instance.weatherManager.currentWeather == WeatherType.Rain)
+            float hpAmount;
+
+            if (GameManager.instance.weatherManager.currentWeather == WeatherType.Rain) // 날씨가 비라면
             {
                 hpAmount = 10f;
             }
+            else
+            {
+                hpAmount = 5f;
+            }
 
-            hp -= hpAmount; // 체력 5 감소
-            water -= 10f; // 물 10 감소
-
-            water = Mathf.Clamp(water, 0f, 100f);
-            hp = Mathf.Clamp(hp, 0f, 100f);
-
+            hp = Mathf.Clamp(hp - hpAmount, 0f, 100f); // 체력 5 감소
+            water = Mathf.Clamp(water - 10f, 0f, 100f); // 물 10 감소
             waterAndHpTimer -= 12.5f;
         }
 
@@ -202,17 +244,17 @@ public class Animal : MonoBehaviour
 
         if (StateType == Animalstate.Eat || StateType == Animalstate.Drink || StateType == Animalstate.Rest) return;
 
-        if (food <= 30f && GameManager.instance.FSMObjectManager.FoodBowl.Count > 0)
+        FSMObjectManager fsmObjectManager = GameManager.instance.FSMObjectManager;
+
+        if (food <= 30f && fsmObjectManager.FoodBowl.Count > 0)
         {
             Change(Animalstate.Eat);
         }
-
-        else if (water <= 30f && GameManager.instance.FSMObjectManager.WaterBowl.Count > 0)
+        else if (water <= 30f && fsmObjectManager.WaterBowl.Count > 0)
         {
             Change(Animalstate.Drink);
         }
-
-        else if (hp <= 30f && GameManager.instance.FSMObjectManager.TreeShades.Count > 0)
+        else if (hp <= 30f && fsmObjectManager.TreeShades.Count > 0)
         {
             Change(Animalstate.Rest);
         }

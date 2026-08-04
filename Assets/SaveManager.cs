@@ -34,11 +34,17 @@ public class GameSaveData
 
     public WeatherType weather;
     public List<AnimalSaveData> animals = new List<AnimalSaveData>();
+
+    public List<Vector3> foodBowlPositions = new List<Vector3>();
+    public List<Vector3> waterBowlPositions = new List<Vector3>();
+    public List<Vector3> treeShadePositions = new List<Vector3>();
 }
 
 public class SaveManager : MonoBehaviour
 {
     public GameObject[] animalPrefabs;
+    [Header("시설물 관리자")]
+    public FSMObjectManager fsmObjectManager;
 
     private string savePath;
 
@@ -89,6 +95,24 @@ public class SaveManager : MonoBehaviour
             animalData.isThunder = animal.isThunder;
 
             data.animals.Add(animalData);
+        }
+
+        Transform[] allObjects = FindObjectsByType<Transform>(FindObjectsSortMode.None);
+
+        foreach (Transform obj in allObjects)
+        {
+            if (obj.name == fsmObjectManager.FoodBowlPrefab.name || obj.name == fsmObjectManager.FoodBowlPrefab.name + "(Clone)")
+            {
+                data.foodBowlPositions.Add(obj.position);
+            }
+            else if (obj.name == fsmObjectManager.WaterBowlPrefab.name || obj.name == fsmObjectManager.WaterBowlPrefab.name + "(Clone)")
+            {
+                data.waterBowlPositions.Add(obj.position);
+            }
+            else if (obj.name == fsmObjectManager.TreeShadesPrefab.name || obj.name == fsmObjectManager.TreeShadesPrefab.name + "(Clone)")
+            {
+                data.treeShadePositions.Add(obj.position);
+            }
         }
 
         string json = JsonUtility.ToJson(data, true);
@@ -156,6 +180,25 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
+
+        foreach (Vector3 position in data.foodBowlPositions)
+        {
+            GameObject foodBowl = Instantiate(fsmObjectManager.FoodBowlPrefab, position, Quaternion.identity);
+            fsmObjectManager.FoodBowl.Add(foodBowl);
+        }
+
+        foreach (Vector3 position in data.waterBowlPositions)
+        {
+            GameObject waterBowl = Instantiate(fsmObjectManager.WaterBowlPrefab, position, Quaternion.identity);
+            fsmObjectManager.WaterBowl.Add(waterBowl);
+        }
+
+        foreach (Vector3 position in data.treeShadePositions)
+        {
+            GameObject treeShade = Instantiate(fsmObjectManager.TreeShadesPrefab, position, Quaternion.identity);
+            fsmObjectManager.TreeShades.Add(treeShade);
+        }
+
 
         Debug.Log("게임 불러오기 완료");
     }

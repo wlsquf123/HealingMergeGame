@@ -100,7 +100,7 @@ public class WeatherManager : MonoBehaviour
             Vector3 spawnPos = spawnPoints[randomIndex].position;
             spawnPos.y = 15f;
 
-            GameObject warning = Instantiate(thunderWarningPrefab, spawnPos, transform.rotation = Quaternion.Euler(90f, 0f, 0f)); // 장판 소환
+            GameObject warning = Instantiate(thunderWarningPrefab, spawnPos, Quaternion.Euler(90, 0, 0)); // 장판 소환
 
             yield return new WaitForSeconds(3f); // 3초 대기
 
