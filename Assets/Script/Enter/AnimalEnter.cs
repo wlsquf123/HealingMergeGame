@@ -15,7 +15,7 @@ public class AnimalEnter : MonoBehaviour
         if (Merged || otherEnter.Merged ||
             animal.animalName != otherEnter.animal.animalName || // 같은 종류인지 확인(이름으로 비교)
             animal.Lv != otherEnter.animal.Lv || // 같은 레벨인지 확인
-            animal.exp < 1000f || otherEnter.animal.exp < 1000f // 두 동물 모두 경험치 1000인지 확인
+            animal.exp < 10f || otherEnter.animal.exp < 10f // 두 동물 모두 경험치 1000인지 확인
             ) return; // 돌아가라
 
         // 내 오브젝트와 닿은 오브젝트 모두 true로 변경 다른 충돌 방지

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class UIManager : MonoBehaviour
 
     public Text pointText; // 포인트 텍스트
     public Text ScoreText; // 점수 텍스트
-    public Text DayText; // 일 시 분
+    public TMP_Text DayText; // 일 시 분
     public Text weatherText; // 날씨 텍스트
 
     public Image stopImage; // 일시정지
@@ -26,23 +27,23 @@ public class UIManager : MonoBehaviour
     {
         var gameManager = GameManager.instance;
 
-        pointText.text = "포인트: " + gameManager.point.ToString(); // 포인트
-        ScoreText.text = "스코어: " + gameManager.score.ToString(); // 점수
+        pointText.text = gameManager.point.ToString(); // 포인트
+        ScoreText.text = gameManager.score.ToString(); // 점수
         endScoreText.text = "최종점수: " + gameManager.endScore.ToString(); // 최종 점수
-        DayText.text = "Day" + gameManager.Day.ToString() + "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00"); // 시간
+        DayText.text = "Day " + gameManager.Day.ToString() + "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00"); // 시간
         switch (gameManager.weatherManager.currentWeather)
         {
             case WeatherType.Sunny:
-                weatherText.text = "날씨: 맑음";
+                weatherText.text = "맑음";
                 break;
             case WeatherType.Cloudy:
-                weatherText.text = "날씨: 흐림";
+                weatherText.text = "흐림";
                 break;
             case WeatherType.Rain:
-                weatherText.text = "날씨: 비";
+                weatherText.text = "비";
                 break;
             case WeatherType.Thunder:
-                weatherText.text = "날씨: 천둥";
+                weatherText.text = "천둥";
                 break;
         }
     }

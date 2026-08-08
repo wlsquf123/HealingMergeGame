@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,14 +33,16 @@ public class Animal : MonoBehaviour
     public Image waterBar;
     public Image hpBar;
 
+    public Text expText;
+    public Text foodText;
+    public Text waterText;
+    public Text hpText;
+
     public float idleTimer = 60f;
     public float foodTimer = 0;
     public float waterAndHpTimer = 0;
 
-    public float minMoveDistance = 3f; // 랜덤 이동 최소 거리
-    public float maxMoveDistance = 8f; // 랜덤 이동 최대 거리
-
-    private Vector3 moveTarget; // 랜덤 이동 목적지
+    private Vector3 moveDirection = Vector3.forward;
 
     private void Update()
     {
@@ -85,17 +88,12 @@ public class Animal : MonoBehaviour
     {
         if (food <= 0 || water <= 0 || hp <= 0) return;
 
-        Vector3 direction = moveTarget - transform.position;
-        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(moveDirection);
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 
-        if (direction.sqrMagnitude > 0.01f)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
+        idleTimer -= Time.deltaTime;
 
-        transform.position = Vector3.MoveTowards(transform.position, moveTarget, currentSpeed * Time.deltaTime);
-
-        if (transform.position == moveTarget)
+        if (idleTimer <= 0)
         {
             SelectRandomBehavior();
         }
@@ -141,7 +139,7 @@ public class Animal : MonoBehaviour
         }
 
         GameObject nearestTarget = targetList[0];
-        float nearestDistance = 999999999999f; // 바꾸지마 이거로 할거야
+        float nearestDistance = 999999999999f;
 
         // 가장 가까운 타겟 찾기
         foreach (GameObject target in targetList)
@@ -196,8 +194,9 @@ public class Animal : MonoBehaviour
                 idleTimer = 60f;
                 break;
             case Animalstate.Move: // 체인지 움직임
-                Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
-                moveTarget = transform.position + randomDirection * Random.Range(minMoveDistance, maxMoveDistance);
+                moveDirection.x = Random.Range(-10f, 10f);
+                moveDirection.z = Random.Range(-10f, 10f);
+                idleTimer = 3f;
                 AddExp(1f);
                 break;
         }
@@ -206,11 +205,16 @@ public class Animal : MonoBehaviour
     public void State()
     {
         // UI
-        LvText.text = Lv.ToString();            // 레벨
-        expBar.fillAmount = exp / 1000f;        // 경험치
-        foodBar.fillAmount = food / 100f;       // 배고픔
-        waterBar.fillAmount = water / 100f;     // 물
-        hpBar.fillAmount = hp / 100f;           // 체력
+        LvText.text = Lv.ToString();            // 레벨텍스트
+        expBar.fillAmount = exp / 10f;        // 경험치바
+        foodBar.fillAmount = food / 100f;       // 배고픔바
+        waterBar.fillAmount = water / 100f;     // 물바
+        hpBar.fillAmount = hp / 100f;           // 체력바
+
+        expText.text = exp.ToString() + " / 10";
+        foodText.text = food.ToString() + " / 100";
+        waterText.text = water.ToString() + " / 100";
+        hpText.text = hp.ToString() + " / 100";
 
         foodTimer += Time.deltaTime;
         waterAndHpTimer += Time.deltaTime;
@@ -262,6 +266,6 @@ public class Animal : MonoBehaviour
 
     public void AddExp(float add)
     {
-        exp = Mathf.Clamp(exp + add, 0f, 1000f); // Mathf.Clamp(검사할 값, 최소값, 최대값);
+        exp = Mathf.Clamp(exp + add, 0f, 10f); // Mathf.Clamp(검사할 값, 최소값, 최대값);
     }
 }

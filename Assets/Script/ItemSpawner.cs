@@ -19,7 +19,7 @@ public class ItemSpawner : MonoBehaviour
         Timer += Time.deltaTime;
         if (Timer >= 12.5f)
         {
-            Instantiate(itemPrefabs[randomItem], treeEnter.transform.position + treeEnter.transform.forward * 1.5f + Vector3.up * 4f, transform.rotation);
+            Instantiate(itemPrefabs[randomItem], treeEnter.transform.position + treeEnter.transform.forward * 3.5f + Vector3.up * 15f, transform.rotation);
             Timer -= 12.5f;
         }
     }

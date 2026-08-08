@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
     public FSMObjectManager FSMObjectManager;
     public WeatherManager weatherManager;
     public InventoryManager inventoryManager;
+    public SaveManager SaveManager;
+    public SceneManage SceneManage;
+
+    public bool isGame = false; // 게임 시작 여부 
+    public bool isLoadGmae = false; // 게임 불러오기 여부
+
 
     public float Day = 1f; // 일
     public float h; // 시
@@ -43,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0 || isGame == false) return;
         Cheatkey(); // 치트키
         GameTIme(); //게임 시간
         State(); // 상태
@@ -168,6 +174,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
         {
             point += 10000f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            h += 1f;
         }
     }
 }
