@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4613141522820102760}
   - component: {fileID: 7547907519552596205}
   - component: {fileID: 2331083451039564074}
-  - component: {fileID: 683539459470997724}
+  - component: {fileID: 7354127417433779962}
   m_Layer: 0
   m_Name: autoAllFoodITem
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.79331, y: 5.47, z: -35.16491}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190795137884777760}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -808644513777527848, guid: a57b8690b6ff8ea41816b7eec5d50a3f, type: 3}
 --- !u!23 &4613141522820102760
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7e7126780a546d4882525cab9705e9b, type: 2}
+  - {fileID: 2100000, guid: 065e2bd936c1c764e97964b5d98cac49, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,8 +133,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &683539459470997724
-CapsuleCollider:
+--- !u!65 &7354127417433779962
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -151,8 +151,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 0.43324664, y: 0.41687194, z: 0.41501674}
+  m_Center: {x: 0.0018879175, y: 0.19515772, z: 0.0016874671}
