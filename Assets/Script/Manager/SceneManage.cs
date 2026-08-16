@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SceneManage : MonoBehaviour
 {
     public GameObject MainOBJ; // 움직이는 카메라
     public GameObject MainCamera; // 안움직이는 카메라
-    public GameObject SubCamera;
 
     public void StartScene()
     {
@@ -23,10 +21,4 @@ public class SceneManage : MonoBehaviour
         GameManager.instance.isGame = true;
         GameManager.instance.SaveManager.LoadGame();
     }
-
-    public void ExitButton()
-    {
-        Application.Quit();
-    }
-
 }

@@ -4,11 +4,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public AnimalList AnimalList;
-
-    public Image MergedSelect; // 머지 선택
-    public Button AnimalButton; // 동물 버튼
-
     public Text pointText; // 포인트 텍스트
     public Text ScoreText; // 점수 텍스트
     public TMP_Text DayText; // 일 시 분
@@ -29,8 +24,8 @@ public class UIManager : MonoBehaviour
 
         pointText.text = gameManager.point.ToString(); // 포인트
         ScoreText.text = gameManager.score.ToString(); // 점수
-        endScoreText.text = "최종점수: " + gameManager.endScore.ToString(); // 최종 점수
-        DayText.text = "Day " + gameManager.Day.ToString() + "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00"); // 시간
+        endScoreText.text = "최종점수: " + gameManager.endScore; // 최종 점수
+        DayText.text = "Day " + gameManager.Day+ "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00"); // 시간
         switch (gameManager.weatherManager.currentWeather)
         {
             case WeatherType.Sunny:
@@ -48,38 +43,32 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OpenAnimallists(int Ranking, Vector3 mergePosition)
-    {
-        MergedSelect.gameObject.SetActive(true); // 머지 선택창 활성화
-        GameObject[] x = AnimalList.GetAnimalList(Ranking);
-
-        for (int i = 0; i < x.Length; i++)
-        {
-            var newButton = Instantiate(AnimalButton, MergedSelect.transform);
-            var ButtonText = newButton.GetComponentInChildren<Text>(); ;
-            var name = x[i].GetComponent<Animal>().animalName;
-            ButtonText.text = name;
-
-            GameObject animalPrefab = x[i];
-
-            newButton.onClick.AddListener(() => AnimalClick(animalPrefab, mergePosition));
-        }
-    }
-
-    public void AnimalClick(GameObject prefab, Vector3 spawnPosition) // 동물 선택
-    {
-        Instantiate(prefab, spawnPosition, transform.rotation);
-        MergedSelect.gameObject.SetActive(false);
-
-        for (int i = 0; i < MergedSelect.transform.childCount; i++)
-        {
-            Destroy(MergedSelect.transform.GetChild(i).gameObject);
-        }
-    }
-
     public void StopUI() // 일시정지
     {
         stopImage.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
+
+    public void OnlickKeep() // 계속하기
+    {
+        Time.timeScale = 1.0f;
+        stopImage.gameObject.SetActive(false);
+    }
+
+    // 랭킹버튼()
+    public void OnlickRanking()
+    {
+
+    }
+    public void OnclickOption() // 설정
+    {
+        // 설정창 열기
+    }
+    
+    // 종료버튼
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
+
 }

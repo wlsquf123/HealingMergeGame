@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,10 +9,9 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventoryManager;
     public SaveManager SaveManager;
     public SceneManage SceneManage;
+    public MergeManager MergeManager;
 
     public bool isGame = false; // 게임 시작 여부 
-    public bool isLoadGmae = false; // 게임 불러오기 여부
-
 
     public float Day = 1f; // 일
     public float h; // 시
@@ -32,7 +30,6 @@ public class GameManager : MonoBehaviour
     [Header("스카이박스")]
     public Material daySkybox;   // 낮 하늘
     public Material nightSkybox; // 밤 하늘
-
 
     private void Awake()
     {
@@ -60,12 +57,12 @@ public class GameManager : MonoBehaviour
 
     public void State()
     {
-        pointTime += Time.deltaTime;
-        // 포인트 2초마다 1증가
-        if (pointTime > 2f)
+        pointTime += Time.deltaTime * 2.4f;
+
+        if (pointTime >= 10f)
         {
             point++;
-            pointTime -= 2f;
+            pointTime -= 10f;
         }
     }
 
@@ -98,7 +95,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool usePoint(float amount)
+    public bool UsePoint(float amount)
     {
         if (point < amount)
         {

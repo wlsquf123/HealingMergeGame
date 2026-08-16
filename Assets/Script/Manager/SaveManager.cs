@@ -53,11 +53,6 @@ public class SaveManager : MonoBehaviour
         savePath = Application.persistentDataPath + "/HealingMergeSave.json";
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F6)) SaveGame();
-    }
-
     public void SaveGame()
     {
         GameSaveData data = new GameSaveData();

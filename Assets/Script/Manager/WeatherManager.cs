@@ -58,23 +58,7 @@ public class WeatherManager : MonoBehaviour
 
     public void ChangeRandomWeather()
     {
-        int random = Random.Range(0, 4);
-
-        switch (random)
-        {
-            case 0:
-                currentWeather = WeatherType.Sunny;
-                break;
-            case 1:
-                currentWeather = WeatherType.Cloudy;
-                break;
-            case 2:
-                currentWeather = WeatherType.Rain;
-                break;
-            case 3:
-                currentWeather = WeatherType.Thunder;
-                break;
-        }
+        currentWeather = (WeatherType)Random.Range(0, 4);
         ApplyWeather();
         Debug.Log("ÇöÀç ³¯¾¾: " + currentWeather);
     }

@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Timeline.Actions.MenuPriority;
 public enum Items
 {
     None,
@@ -15,6 +13,11 @@ public enum Items
 public class Item : MonoBehaviour
 {
     public Items ItemType;
+
+    private void Start()
+    {
+        ItemType = (Items)Random.Range(1, 7); // None 제외하고 랜덤 아이템 선택
+    }
 
     private void OnMouseDown()
     {

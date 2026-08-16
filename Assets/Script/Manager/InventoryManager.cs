@@ -83,12 +83,12 @@ public class InventoryManager : MonoBehaviour
         autoHpButton.gameObject.SetActive(autoHpCount > 0);
         thunderButton.gameObject.SetActive(thunderCount > 0);
 
-        foodCountText.text = "먹이 " + "x" + foodCount;
-        waterCountText.text = "물 " + "x" + waterCount;
-        autoFoodCountText.text = "전체 먹이 \n" + "x" + autoFoodCount;
-        autoWaterCountText.text = "전체 물 \n" + "x" + autoWaterCount;
-        autoHpCountText.text = "전체 회복 \n" + "x" + autoHpCount;
-        thunderCountText.text = "천둥 방어 \n" + "x" + thunderCount;
+        foodCountText.text = "먹이 x" + foodCount;
+        waterCountText.text = "물 x" + waterCount;
+        autoFoodCountText.text = "전체 먹이 \nx" + autoFoodCount;
+        autoWaterCountText.text = "전체 물 \nx" + autoWaterCount;
+        autoHpCountText.text = "전체 회복 \nx" + autoHpCount;
+        thunderCountText.text = "천둥 방어 \nx" + thunderCount;
     }
 
     public void UseItem(int index)

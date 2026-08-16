@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,8 +21,7 @@ public class Animal : MonoBehaviour
     public float food = 50f; // 포만도
     public float water = 50f; // 수분유지
     public float hp = 100f; // 체력
-    public float speed = 5f; // 이동속도
-    private float currentSpeed; // 진짜 이동속도
+    private float currentSpeed = 5f; // 현재 이동속도
     public int Rating = 1; // 등급
     public bool isThunder = false;
 
@@ -76,11 +74,11 @@ public class Animal : MonoBehaviour
 
     public void IdleState() // 대기
     {
-        idleTimer -= Time.deltaTime;
+        idleTimer -= Time.deltaTime * 2.4f;
 
         if (idleTimer <= 0)
         {
-            SelectRandomBehavior();
+            RandomAI();
         }
     }
 
@@ -91,11 +89,11 @@ public class Animal : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(moveDirection);
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
 
-        idleTimer -= Time.deltaTime;
+        idleTimer -= Time.deltaTime * 2.4f;
 
         if (idleTimer <= 0)
         {
-            SelectRandomBehavior();
+            RandomAI();
         }
     }
 
@@ -103,7 +101,7 @@ public class Animal : MonoBehaviour
     {
         if (food > 30)
         {
-            SelectRandomBehavior();
+            RandomAI();
             return;
         }
         MoveToTarget(GameManager.instance.FSMObjectManager.FoodBowl);
@@ -113,7 +111,7 @@ public class Animal : MonoBehaviour
     {
         if (water > 30)
         {
-            SelectRandomBehavior();
+            RandomAI();
             return;
         }
         MoveToTarget(GameManager.instance.FSMObjectManager.WaterBowl);
@@ -124,7 +122,7 @@ public class Animal : MonoBehaviour
         // 이동 중에 체력이 30 초과로 회복되었다면 쉬러 가는 걸 취소하고 대기/이동 선택
         if (hp > 30f)
         {
-            SelectRandomBehavior();
+            RandomAI();
             return;
         }
         MoveToTarget(GameManager.instance.FSMObjectManager.TreeShades);
@@ -134,7 +132,7 @@ public class Animal : MonoBehaviour
     {
         if (targetList == null || targetList.Count == 0)
         {
-            SelectRandomBehavior();
+            RandomAI();
             return;
         }
 
@@ -160,6 +158,7 @@ public class Animal : MonoBehaviour
 
     public void UpdateSpeed() // 속도
     {
+        float speed = 5f;
         if (GameManager.instance.weatherManager.currentWeather == WeatherType.Cloudy) // 날씨가 흐리면
         {
             currentSpeed = speed * 0.5f;
@@ -170,7 +169,7 @@ public class Animal : MonoBehaviour
         }
     }
 
-    public void SelectRandomBehavior() // 이동과 대기 중 하나를 랜덤 선택
+    public void RandomAI() // 이동과 대기 중 하나를 랜덤 선택
     {
         int randomState = Random.Range(0, 2);
 

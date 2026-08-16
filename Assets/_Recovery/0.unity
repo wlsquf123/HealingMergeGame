@@ -521,13 +521,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 8363498694460186298, guid: 723d3a3252c15be44b4abed2876945b0, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1165,7 +1165,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 183015985}
   - component: {fileID: 183015984}
   m_Layer: 0
-  m_Name: option
+  m_Name: Button (Legacy) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1851,6 +1851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneManage
   MainOBJ: {fileID: 651632202}
   MainCamera: {fileID: 322318620}
+  SubCamera: {fileID: 894816690}
 --- !u!4 &267047160
 Transform:
   m_ObjectHideFlags: 0
@@ -2399,7 +2400,7 @@ GameObject:
   - component: {fileID: 322318622}
   - component: {fileID: 322318625}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Main Camera (2)
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3037,19 +3038,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360535661}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 3449454767140847101, guid: b0010b5d180c35b45aaf6c1520b9bb55, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &360535661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,7 +3571,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3715,7 +3704,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4928,6 +4917,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559060459}
   m_CullTransparentMesh: 1
+--- !u!1 &591923177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 591923179}
+  - component: {fileID: 591923178}
+  m_Layer: 0
+  m_Name: ButtonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &591923178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591923177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f128caa81842d004688f64c2be628a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!4 &591923179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591923177}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 607516859}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &604165736
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,8 +5041,9 @@ MonoBehaviour:
   inventoryManager: {fileID: 1157906114}
   SaveManager: {fileID: 1838079120}
   SceneManage: {fileID: 267047159}
-  MergeManager: {fileID: 1724616354}
+  MergeManager: {fileID: 0}
   isGame: 0
+  isLoadGmae: 0
   Day: 1
   h: 0
   m: 0
@@ -5037,11 +5071,11 @@ Transform:
   - {fileID: 1017210931}
   - {fileID: 399747484}
   - {fileID: 1666363140}
+  - {fileID: 591923179}
   - {fileID: 1943221776}
   - {fileID: 1157906115}
   - {fileID: 1838079121}
   - {fileID: 267047160}
-  - {fileID: 1724616353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &648388310
@@ -5588,7 +5622,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7329,28 +7363,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dafdcc7022016974a9d225af8c9aa86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalSpawner
-  Animals:
+  AnimalLv1:
   - {fileID: 3580137116322980271, guid: 12df106874a4a7f48825713b70fdb398, type: 3}
   - {fileID: 3115078081427282630, guid: 0846161ffbd197d49b86ddd5e26ad355, type: 3}
+  AnimalLv2:
   - {fileID: 1126512915581808552, guid: 7bfbd13ec73923245a1f70ba095db873, type: 3}
   - {fileID: 4090723078410431683, guid: a2b9ae19c866f2b4a987e7dbe4670d89, type: 3}
   - {fileID: 8363498694460186298, guid: 723d3a3252c15be44b4abed2876945b0, type: 3}
+  AnimalLv3:
   - {fileID: 9159438296119893477, guid: 1711437f51a32814f9c508178eb83073, type: 3}
   - {fileID: 1080861492867149936, guid: 66ecaf80168470649a343625ed2ccfe8, type: 3}
   - {fileID: 3449454767140847101, guid: b0010b5d180c35b45aaf6c1520b9bb55, type: 3}
+  AnimalLv4:
   - {fileID: 5470736499257729128, guid: 618758e918141ab47bcf2088005dcbcb, type: 3}
+  AnimalLv5:
   - {fileID: 8638375579436474746, guid: 7cfbeeaea50847f43b3369dc9c559db9, type: 3}
-  prices:
-  - 10
-  - 10
-  - 50
-  - 50
-  - 50
-  - 300
-  - 300
-  - 300
-  - 2000
-  - 7000
 --- !u!114 &1017210930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8259,19 +8286,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1130136450}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 9159438296119893477, guid: 1711437f51a32814f9c508178eb83073, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1130136450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8606,9 +8621,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1666363144}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: StopUI
+      - m_Target: {fileID: 591923178}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
+        m_MethodName: StopButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8888,7 +8903,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9711,7 +9726,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10460,19 +10475,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1384922553}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8638375579436474746, guid: 7cfbeeaea50847f43b3369dc9c559db9, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1384922553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16200,13 +16203,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4090723078410431683, guid: a2b9ae19c866f2b4a987e7dbe4670d89, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16697,19 +16700,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1605895685}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1080861492867149936, guid: 66ecaf80168470649a343625ed2ccfe8, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1605895685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21669,13 +21660,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1126512915581808552, guid: 7bfbd13ec73923245a1f70ba095db873, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -22649,57 +22640,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1724616352
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1724616353}
-  - component: {fileID: 1724616354}
-  m_Layer: 0
-  m_Name: MergeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1724616353
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724616352}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 607516859}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1724616354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724616352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76cfe1dadd9d5d747a907e391f326967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MergeManager
-  MergedSelect: {fileID: 1223739457}
-  MergeRanks:
-  - {fileID: 1189794959}
-  - {fileID: 1556813056}
-  - {fileID: 66790164}
-  - {fileID: 1530029423}
-  - {fileID: 1724616352}
 --- !u!1 &1732825658
 GameObject:
   m_ObjectHideFlags: 0
@@ -22783,8 +22723,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1666363144}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+      - m_Target: {fileID: 591923178}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: OnlickKeep
         m_Mode: 1
         m_Arguments:
@@ -22846,7 +22786,7 @@ GameObject:
   - component: {fileID: 1769181236}
   - component: {fileID: 1769181235}
   m_Layer: 0
-  m_Name: Ranking
+  m_Name: Button (Legacy) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23715,19 +23655,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1856262187}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1724616354}
-        m_TargetAssemblyTypeName: MergeManager, Assembly-CSharp
-        m_MethodName: AnimalClick
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5470736499257729128, guid: 618758e918141ab47bcf2088005dcbcb, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1856262187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24481,7 +24409,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -24826,7 +24754,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -30335,7 +30263,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
