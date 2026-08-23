@@ -14,13 +14,13 @@ public class MergeManager : MonoBehaviour
 
         for (int i = 0; i < MergeRanks.Length; i++)
         {
-            MergeRanks[i].SetActive(i == rating - 2); // i가 2이고 rating이 2이면 0배열꺼
+            MergeRanks[i].SetActive(i == rating - 2); // 무조건 그냥 -2 해주면 댐. i == rating -2 
         }
     }
 
-    public void AnimalClick(GameObject prefab) // 동물 선택
+    public void AnimalClick(GameObject prefab) // 동물 선택 버튼
     {
         Instantiate(prefab, mergePosition, Quaternion.identity);
-        MergedSelect.SetActive(false);
+        MergedSelect.SetActive(false); // 판때기는 끄겠다.
     }
 }

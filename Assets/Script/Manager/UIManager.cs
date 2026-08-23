@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public Text weatherText; // 날씨 텍스트
 
     public Image stopImage; // 일시정지
-    public Image endGameImage; // 게임끝 이미지
+    public GameObject endGameImage; // 게임끝 이미지
     public Text endScoreText; // 게임 끝 스코어 텍스트
 
     void Update()
@@ -26,7 +26,8 @@ public class UIManager : MonoBehaviour
         ScoreText.text = gameManager.score.ToString(); // 점수
         endScoreText.text = "최종점수: " + gameManager.endScore; // 최종 점수
         DayText.text = "Day " + gameManager.Day+ "\n" + gameManager.h.ToString("00") + ":" + gameManager.m.ToString("00"); // 시간
-        switch (gameManager.weatherManager.currentWeather)
+
+        switch (GameManager.instance.weatherManager.currentWeather)
         {
             case WeatherType.Sunny:
                 weatherText.text = "맑음";

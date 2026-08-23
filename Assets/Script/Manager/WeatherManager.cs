@@ -12,7 +12,7 @@ public class WeatherManager : MonoBehaviour
 {
     public GameObject rainParticle; // 비 파티클 오브젝트
 
-    public WeatherType currentWeather = WeatherType.Sunny; // 초기값 맑음
+    public WeatherType currentWeather;
 
     [Header("천둥")]
     public GameObject thunderWarningPrefab; // 경고 장판 프리팹

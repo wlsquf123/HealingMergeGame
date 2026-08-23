@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 7547907519552596205}
   - component: {fileID: 2331083451039564074}
   - component: {fileID: 7354127417433779962}
+  - component: {fileID: -2751576255877479873}
   m_Layer: 0
-  m_Name: item
+  m_Name: "\uC544\uC774\uD15C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,3 +155,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.43324664, y: 0.41687194, z: 0.41501674}
   m_Center: {x: 0.0018879175, y: 0.19515772, z: 0.0016874671}
+--- !u!114 &-2751576255877479873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190795137884777760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uC544\uC774\uD15C"

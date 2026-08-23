@@ -159,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_Name
-      value: Dinosaur
+      value: "\uACF5\uB8E1"
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       propertyPath: m_TagString
@@ -202,6 +202,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8510155056894964133}
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3657157355648276485}
   m_SourcePrefab: {fileID: 100100000, guid: 6bcc76aebcc27f641a1ba39f7e8e5fe6, type: 3}
 --- !u!4 &4736367384236823401 stripped
 Transform:
@@ -232,7 +235,6 @@ MonoBehaviour:
   food: 50
   water: 50
   hp: 100
-  speed: 5
   Rating: 5
   isThunder: 0
   LvText: {fileID: 4691836073087685585}
@@ -346,6 +348,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3657157355648276485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8638375579436474746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uACF5\uB8E1"
 --- !u!1001 &6921515931103439952
 PrefabInstance:
   m_ObjectHideFlags: 0

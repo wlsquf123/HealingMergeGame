@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public SaveManager SaveManager;
     public SceneManage SceneManage;
     public MergeManager MergeManager;
+    public RankingManager RankingManager;
 
     public bool isGame = false; // 게임 시작 여부 
 
@@ -24,12 +25,11 @@ public class GameManager : MonoBehaviour
     int cheatScore = 0; // 치트키 점수 
     public int endScore = 0; // 최종점수
 
-    [Header("낮과 밤")]
-    public Light sunLight; // Directional Light
-
-    [Header("스카이박스")]
-    public Material daySkybox;   // 낮 하늘
-    public Material nightSkybox; // 밤 하늘
+    public Light Light;
+    public Material 낮;
+    public Material 밤;
+    public Material 노을;
+    public Material 흐림;
 
     private void Awake()
     {
@@ -40,8 +40,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
-        }
+            Destroy(gameObject);        }
     }
 
     void Update()
@@ -84,17 +83,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameEnd()
-    {
-        if (Day >= 8)
-        {
-            Debug.Log("게임 끝");
-            Time.timeScale = 0f;
-            UImanager.endGameImage.gameObject.SetActive(true);
-            endScore = score + 700; // 최종 점수 계산
-        }
-    }
-
     public bool UsePoint(float amount)
     {
         if (point < amount)
@@ -106,10 +94,22 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    public void GameEnd() // 이거도 기억해요 대회에서 쓸거야.
+    {
+        if (Day >= 8)
+        {
+            Debug.Log("게임 끝");
+            Time.timeScale = 0f;
+            UImanager.endGameImage.SetActive(true);
+            endScore = score + 700; // 최종 점수 계산
+        }
+    }
+
+
     public void TotalScore()
     {
-        score = 0;
-        Animal[] animals = FindObjectsByType<Animal>(FindObjectsSortMode.None); // 순서를 따로 정렬하지 말고, 검색된 순서 그대로 가져와라
+        score = 0; // 이거 해줘야함 안그러면 계속 더해짐. 한번 초기화 하는거임 그리고 저장기능떄 안만들어도 됨.
+        var animals = FindObjectsByType<Animal>(FindObjectsSortMode.None);
 
         // 동물별 레벨 × 등급 계산
         foreach (var animal in animals)
@@ -119,24 +119,28 @@ public class GameManager : MonoBehaviour
 
         score += cheatScore; // 스코어 안에 치트키 넣으면 사라지니까 따로 저장해서 합치기
     }
-
+    
     public void DayNight()
     {
-        float currentTime = h + (m / 60f);
+        float currTimer = h + m / 60f;
 
-        // 1. 태양 각도 조절
-        sunLight.transform.rotation = Quaternion.Euler((currentTime / 24) * 360 - 90f, 170f, 0f);
+        Light.transform.rotation = Quaternion.Euler(currTimer / 24 * 360 - 90, 0f, 0f);
 
-        // 2. 시간대에 따른 낮밤 판별 및 스카이박스 변경
-        if (currentTime >= 18f || currentTime < 6f)
+        if (currTimer >= 20f || currTimer < 6)
         {
-            RenderSettings.skybox = nightSkybox; // 밤 하늘로 변경!
-            sunLight.intensity = 0.1f;
+            RenderSettings.skybox = 밤;
+        }
+        else if (weatherManager.currentWeather == WeatherType.Thunder || weatherManager.currentWeather == WeatherType.Rain) 
+        {
+            RenderSettings.skybox = 흐림;
+        }
+        else if (currTimer >= 17)
+        {
+            RenderSettings.skybox = 노을;
         }
         else
         {
-            RenderSettings.skybox = daySkybox;   // 낮 하늘로 변경!
-            sunLight.intensity = 1f;
+            RenderSettings.skybox = 낮;
         }
     }
 
@@ -176,6 +180,11 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F7))
         {
             h += 1f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            SaveManager.GameSave();
         }
     }
 }

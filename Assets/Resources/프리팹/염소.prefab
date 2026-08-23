@@ -2670,6 +2670,7 @@ GameObject:
   - component: {fileID: -413624969074989737}
   - component: {fileID: 4236197879348491112}
   - component: {fileID: 6044957597706203153}
+  - component: {fileID: -2690262760280694775}
   m_Layer: 0
   m_Name: "\uC5FC\uC18C"
   m_TagString: Animal
@@ -2715,7 +2716,6 @@ MonoBehaviour:
   food: 50
   water: 50
   hp: 100
-  speed: 5
   Rating: 2
   isThunder: 0
   LvText: {fileID: 1331027072683458061}
@@ -2829,6 +2829,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2690262760280694775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4090723078410431683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uC5FC\uC18C"
 --- !u!1 &4250365435838444214
 GameObject:
   m_ObjectHideFlags: 0

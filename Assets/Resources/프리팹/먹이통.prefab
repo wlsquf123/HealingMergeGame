@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 8203215086782329759}
   - component: {fileID: 6876471968889303509}
   - component: {fileID: 327370532062761409}
+  - component: {fileID: 2315768014286727161}
   m_Layer: 0
-  m_Name: foodbowl
+  m_Name: "\uBA39\uC774\uD1B5"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +171,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7979991, y: 0.15799963, z: 0.6190009}
   m_Center: {x: 0, y: -0.0009825714, z: 0.010499418}
+--- !u!114 &2315768014286727161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949812381212675706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uBA39\uC774\uD1B5"
 --- !u!1 &4711539832798225811
 GameObject:
   m_ObjectHideFlags: 0

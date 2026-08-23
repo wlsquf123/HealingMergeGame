@@ -135,7 +135,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4bb6fb62c1fa3c04891478d031e3d83a, type: 2}
     - target: {fileID: 919132149155446097, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_Name
-      value: Wolf
+      value: "\uB291\uB300"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       propertyPath: m_TagString
@@ -178,6 +178,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8907882935131698500}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2121471426698498123}
   m_SourcePrefab: {fileID: 100100000, guid: 2a9979b14acae404f8d4cd863daf1b34, type: 3}
 --- !u!4 &354092409578386706 stripped
 Transform:
@@ -208,7 +211,6 @@ MonoBehaviour:
   food: 50
   water: 50
   hp: 100
-  speed: 5
   Rating: 2
   isThunder: 0
   LvText: {fileID: 8062929837636224325}
@@ -322,6 +324,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2121471426698498123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126512915581808552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uB291\uB300"
 --- !u!1001 &5690207875970202308
 PrefabInstance:
   m_ObjectHideFlags: 0

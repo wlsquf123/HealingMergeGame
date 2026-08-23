@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 60f2145e9cabb9b4889075ef9abe1c94, type: 2}
     - target: {fileID: 919132149155446097, guid: 6366e10f9cacd274ebee65ade5a76def, type: 3}
       propertyPath: m_Name
-      value: Tree
+      value: "\uB098\uBB34"
       objectReference: {fileID: 0}
     - target: {fileID: 1456752469897005060, guid: 6366e10f9cacd274ebee65ade5a76def, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -136,6 +136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6366e10f9cacd274ebee65ade5a76def, type: 3}
       insertIndex: -1
       addedObject: {fileID: -344382917980565154}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6366e10f9cacd274ebee65ade5a76def, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8736251992579059163}
     - targetCorrespondingSourceObject: {fileID: 4860884733252827142, guid: 6366e10f9cacd274ebee65ade5a76def, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6696779022237320852}
@@ -220,6 +223,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-8736251992579059163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3310081841172345157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uB098\uBB34"
 --- !u!1 &7087532068533842962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4860884733252827142, guid: 6366e10f9cacd274ebee65ade5a76def, type: 3}

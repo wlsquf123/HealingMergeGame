@@ -159,8 +159,9 @@ GameObject:
   - component: {fileID: 5097748496871219987}
   - component: {fileID: 3024294216446123802}
   - component: {fileID: 5529364806545261248}
+  - component: {fileID: -7147716394590599769}
   m_Layer: 0
-  m_Name: water
+  m_Name: "\uBB3C\uD1B5"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,3 +317,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8167999531480288603, guid: ad31af7c0ad57ef43930687b52e8c4cb, type: 3}
+--- !u!114 &-7147716394590599769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5913014302347234481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19ac6b89979b4c4ba6ad81a21c68b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveID
+  id: "\uBB3C\uD1B5"
